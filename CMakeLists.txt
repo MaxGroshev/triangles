@@ -1,20 +1,18 @@
-cmake_minimum_required (VERSION 3.5)
+cmake_minimum_required (VERSION 3.21)
 
 #-----------------------------------------------------------------------------------------
 
 # project (trian)
 # project (not_trian)
-set (BUILD_TYPE  "DEBUG")
+set (CMAKE_BUILD_TYPE "Debug")
 
 #-----------------------------------------------------------------------------------------
 
-set (GCC_COMPILE_FLAGS      "-Wshadow -std=c++17 -Wall")
-set (GCC_OPTIMIZATION_FLAGS "-O2 -DNDEBUG")
-#add_compile_options(...) #Better way of adding flags?
-
-set (CMAKE_CXX_FLAGS  "${GCC_COMPILE_FLAGS}")
-if  (BUILD_TYPE STREQUAL "RELEASE")
-    set (CMAKE_CXX_FLAGS  "${GCC_OPTIMIZATION_FLAGS}")
+if (CMAKE_BUILD_TYPE STREQUAL "Release")
+    message ("Release_version")
+elseif (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_definitions (MY_DEBUG)
+    message ("Debug_version")
 endif ()
 
 #-----------------------------------------------------------------------------------------
@@ -23,8 +21,17 @@ endif ()
 set (SOURCE
     main.cpp)
 
-set (SOURCE1
-    file.cpp)
+#Debug
+set (DEBUG_UTILS
+    ./debug_utils/error_control.cpp)
 
-add_executable (trian ${SOURCE})
-add_executable (not_trian ${SOURCE1})
+#Headers
+set (FIGURES
+    figures/point.hpp
+    figures/vector.hpp
+    figures/line.hpp
+    figures/plane.hpp
+    figures/triangle.hpp
+    )
+
+add_executable (trian ${FIGURES} ${SOURCE}  ${DEBUG_UTILS})

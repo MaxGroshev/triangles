@@ -1,22 +1,22 @@
-#include <iostream>
+#include "./figures/triangle.hpp"
+// #include "point.hpp"
+// #include "line.hpp"
 
-int func () {
-    int var = 7;
-    switch (var) {
-        case 1:
-            std::cout << "Hello\n";
-            break;
-        // default:
-        //     std::cout << "Hell\n";
+int main() {
+    point_t p1 (0, 0, 0);
+    point_t p2 (0, 1, 0);
+    point_t p3 (1, 0, 0);
+    int x = 9;
+    ASSERT (x == 8);
+
+    std::cout << "Hello\n";
+    for (int i = 0; i < 6; i++) {
+
     }
+    triangle_t trian (p1, p2, p3);
+    trian.print();
 
-    std::cout << "Hello\n";
-}
-
-int main () {
-    std::cout << "Hello\n";
-    func ();
-    // return 0;
+    return 0;
 }
 
 
