@@ -5,12 +5,11 @@ cmake_minimum_required (VERSION 3.21)
 # project (trian)
 # project (not_trian)
 set (CMAKE_BUILD_TYPE "Debug")
+set (TESTING_ENABLED ON)
 
 #-----------------------------------------------------------------------------------------
 
-if (CMAKE_BUILD_TYPE STREQUAL "Release")
-    message ("Release_version")
-elseif (CMAKE_BUILD_TYPE STREQUAL "Debug")
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_definitions (MY_DEBUG)
     message ("Debug_version")
 endif ()
@@ -31,7 +30,12 @@ set (FIGURES
     figures/vector.hpp
     figures/line.hpp
     figures/plane.hpp
-    figures/triangle.hpp
-    )
+    figures/triangle.hpp)
 
-add_executable (trian ${FIGURES} ${SOURCE}  ${DEBUG_UTILS})
+#-----------------------------------------------------------------------------------------
+
+add_executable   (trian ${FIGURES} ${SOURCE}  ${DEBUG_UTILS})
+
+if (TESTING_ENABLED)
+    add_subdirectory (./tests/unit_tests/)
+endif ()

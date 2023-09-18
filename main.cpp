@@ -6,8 +6,6 @@ int main() {
     point_t p1 (0, 0, 0);
     point_t p2 (0, 1, 0);
     point_t p3 (1, 0, 0);
-    int x = 9;
-    ASSERT (x == 8);
 
     std::cout << "Hello\n";
     for (int i = 0; i < 6; i++) {
