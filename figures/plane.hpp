@@ -3,8 +3,10 @@
 
 //-----------------------------------------------------------------------------------------
 
+//#include "./linear_algebra.hpp" //probably bad descision to incude here: now access vect;
 #include "./vector.hpp"
 #include "./line.hpp"
+#include "./linear_algebra.hpp"
 #include "../debug_utils/error_control.h"
 
 //-----------------------------------------------------------------------------------------
@@ -24,6 +26,7 @@ struct plane_t {
 
     int set_plane(const point_t& point1, const point_t& point2,
                                          const point_t& point3);
+    bool intersect(const plane_t& plane) const;
     void print();
 };
 
@@ -53,6 +56,19 @@ int plane_t::set_plane(const point_t& point1, const point_t& point2,
 
     return 0;
 }
+
+//-----------------------------------------------------------------------------------------
+
+bool plane_t::intersect(const plane_t& plane) const {
+    //
+    // point_on_plane = point1;
+    // vector_v.set_vector(point1, point2);
+    // vector_w.set_vector(point1, point3);
+
+    return 0;
+}
+
+//-----------------------------------------------------------------------------------------
 
 void plane_t::print() {
     point_on_plane.print ();

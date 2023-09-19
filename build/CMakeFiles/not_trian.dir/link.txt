@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wshadow -std=c++17 -Wall CMakeFiles/not_trian.dir/file.cpp.o -o not_trian 
