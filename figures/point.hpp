@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <cmath>
 
+#include "./geometry_consts.hpp"
 #include "../debug_utils/error_control.h"
 
 //-----------------------------------------------------------------------------------------
@@ -30,7 +31,7 @@ struct point_t {
         std::cout << "Hello from point constructor\n";
     };
     virtual ~point_t() {};
-
+    inline void set_point (double x_, double y_, double z_) {x = x_; y = y_; z = z_;};
     inline bool is_valid() const {return !(x != x || y != y || z != z);};
     inline void print()    const
     {std::cout << "Point:  " << "(" << x << ';' << y << ';' << z << ")\n";};

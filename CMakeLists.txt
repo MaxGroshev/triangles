@@ -5,7 +5,8 @@ cmake_minimum_required (VERSION 3.21)
 project (trian)
 
 set (CMAKE_BUILD_TYPE "Debug")
-set (TESTING_ENABLED OFF)
+
+set (TESTING_ENABLED ON)
 
 #-----------------------------------------------------------------------------------------
 
@@ -18,13 +19,12 @@ endif ()
 
 #Root dir src
 set (SOURCE
-    main.cpp)
+    main.cpp
+    ./interactio_with_user/unteraction_with_user.cpp)
 
 #Debug
 set (DEBUG_UTILS
     ./debug_utils/error_control.cpp)
-
-
 
 #Headers
 set (FIGURES
@@ -32,15 +32,17 @@ set (FIGURES
     figures/vector.hpp
     figures/line.hpp
     figures/plane.hpp
-    figures/linear_algebra.hpp
+    debug_utils/error_control.h
     figures/triangle.hpp)
 
 set (LIN_ALGEBRA)
     # ./figures/linear_algebra.cpp)
 #-----------------------------------------------------------------------------------------
 
-add_executable   (${PROJECT_NAME} ${FIGURES} ${SOURCE} ${LIN_ALGEBRA} ${DEBUG_UTILS})
+add_executable (${PROJECT_NAME} ${FIGURES} ${SOURCE} ${LIN_ALGEBRA} ${DEBUG_UTILS})
 
 if (TESTING_ENABLED)
-    add_subdirectory (./tests/unit_tests/)
+    add_subdirectory (./tests/)
 endif ()
+
+

@@ -1,3 +1,0 @@
-/home/max/vladoc/triangle/tests/unit_tests/build/CMakeFiles/tests.dir
-/home/max/vladoc/triangle/tests/unit_tests/build/CMakeFiles/edit_cache.dir
-/home/max/vladoc/triangle/tests/unit_tests/build/CMakeFiles/rebuild_cache.dir

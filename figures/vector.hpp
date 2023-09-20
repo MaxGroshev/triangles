@@ -21,7 +21,8 @@ struct vector_t {
     virtual ~vector_t() {};
 
     int      set_vector(const point_t& point1, const point_t& point2);
-    vector_t product(const vector_t& vector);
+    vector_t cross_product(const vector_t& vector) const;
+    double   dot_product(const vector_t& vector) const;
     void     print() const {
         std::cout << "Vector: "<< "(" << a << ';' << b << ';' << c << ")\n";}
 };
@@ -50,13 +51,17 @@ int vector_t::set_vector(const point_t& point1, const point_t& point2) {
     return 0;
 }
 
-vector_t vector_t::product(const vector_t& vector) {
+vector_t vector_t::cross_product(const vector_t& vector) const {
     vector_t res;
     res.a =   (b * vector.c) - (c * vector.b);
     res.b = -((a * vector.c) - (c * vector.b));
     res.c =   (a * vector.b) - (b * vector.a);
 
     return res;
+}
+
+double vector_t::dot_product(const vector_t& vector) const {
+    return (a * vector.a + b* vector.b + c * vector.c);
 }
 
 #endif

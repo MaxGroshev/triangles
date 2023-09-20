@@ -19,3 +19,5 @@ TEST(vector_test, vector_constructor) {
     ASSERT_TRUE(vector.b == 1001.89);
     ASSERT_TRUE(vector.c == -1000);
 }
+
+//-----------------------------------------------------------------------------------------
