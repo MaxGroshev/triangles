@@ -4,6 +4,13 @@ cmake_minimum_required (VERSION 3.21)
 
 project (tests)
 
+set (CMAKE_BUILD_TYPE "Debug")
+
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_definitions (MY_DEBUG)
+    message ("Debug_version")
+endif ()
+
 #-----------------------------------------------------------------------------------------
 
 
@@ -19,7 +26,9 @@ set (UNIT_TESTS
 
 #End_to_end_tests
 set (E2E_TESTS
-    ./end_to_end_tests/main.cpp)
+    ./end_to_end_tests/main.cpp
+    ./end_to_end_tests/e2e_tests.cpp
+    ../interactio_with_user/unteraction_with_user.cpp)
 
 #Headers of figures
 set (HEADERS
@@ -29,6 +38,7 @@ set (HEADERS
     ../figures/plane.hpp
     ../debug_utils/error_control.h
     ../figures/triangle.hpp
+    ./end_to_end_tests/e2e_tests.hpp
     )
 
 #Debug

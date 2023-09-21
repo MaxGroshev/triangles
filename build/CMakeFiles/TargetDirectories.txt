@@ -1,3 +1,0 @@
-/home/max/vladoc/triangle/build/CMakeFiles/trian.dir
-/home/max/vladoc/triangle/build/CMakeFiles/edit_cache.dir
-/home/max/vladoc/triangle/build/CMakeFiles/rebuild_cache.dir

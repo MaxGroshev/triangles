@@ -42,4 +42,8 @@ triangle_t* get_users_triangles(const size_t count_of_triangles,  std::istream &
     return triangles;
 }
 
-//double
+void print_triangles(triangle_t* triangle, size_t count_of_triangle) {
+    for (int i = 0; i < count_of_triangle; i++) {
+        triangle[i].print();
+    }
+}

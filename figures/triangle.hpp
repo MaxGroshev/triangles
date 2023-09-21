@@ -25,15 +25,15 @@ class triangle_t {
     public:
         //Constructor & destructor
         explicit triangle_t() {};
-        explicit triangle_t(const point_t& point1, const point_t& point2,
+        inline explicit triangle_t(const point_t& point1, const point_t& point2,
                                                    const point_t& point3);
         virtual ~triangle_t() {};
 
-        int  set(const point_t& point1, const point_t& point2, const point_t& point3);
-        bool point_in_triangle(const point_t& point) const;
-        bool crosses_in_same_plane(const triangle_t& trian) const;
-        bool intersect  (const triangle_t& trian) const;
-        void print();
+        inline int  set(const point_t& point1, const point_t& point2, const point_t& point3);
+        inline bool point_in_triangle(const point_t& point) const;
+        inline bool crosses_in_same_plane(const triangle_t& trian) const;
+        inline bool intersect  (const triangle_t& trian) const;
+        inline void print();
 
 };
 

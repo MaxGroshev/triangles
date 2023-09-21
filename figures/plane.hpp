@@ -25,17 +25,20 @@ struct plane_t {
 
     //Methods
     //Constructor & destructor
-    explicit plane_t() {};
-    explicit plane_t(const point_t& point1, const point_t& point2, const point_t& point3);
-    virtual ~plane_t() {};
+    inline explicit plane_t() {};
+    inline explicit plane_t(const point_t& point1, const point_t& point2,
+                                                   const point_t& point3);
+    inline virtual ~plane_t() {};
 
-    int  set_plane(const point_t& point1, const point_t& point2, const point_t& point3);
-    int  def_pos_of_planes(const plane_t& plane) const;
+    inline int  set_plane(const point_t& point1, const point_t& point2,
+                                                 const point_t& point3);
+    inline int  def_pos_of_planes(const plane_t& plane) const;
 
-    point_t find_point_of_intersection(const line_t& line) const;
+    inline point_t find_point_of_intersection(const line_t& line) const;
 
-    friend double find_det(const vector_t& vec1, const vector_t& vec2, const vector_t& vec3);
-    void print();
+    inline friend double find_det(const vector_t& vec1, const vector_t& vec2,
+                                                        const vector_t& vec3);
+    inline void print() const ;
 };
 
 //-----------------------------------------------------------------------------------------
@@ -113,7 +116,7 @@ point_t plane_t::find_point_of_intersection(const line_t& line) const {
 
 //-----------------------------------------------------------------------------------------
 
-void plane_t::print() {
+void plane_t::print() const {
     std::cout << '(' << A << ';' << B << ';' << C << ") - normal vector of plane\n";
     std::cout << "D = " << D  << '\n';
 }

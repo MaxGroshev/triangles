@@ -17,13 +17,13 @@ struct vector_t {
     //Methods
     //Constructor & destructor
     explicit vector_t() {};
-    explicit vector_t(const point_t& point1, const point_t& point2);
+    inline explicit vector_t(const point_t& point1, const point_t& point2);
     virtual ~vector_t() {};
 
-    int      set_vector(const point_t& point1, const point_t& point2);
-    vector_t cross_product(const vector_t& vector) const;
-    double   dot_product(const vector_t& vector) const;
-    void     print() const {
+    inline int      set_vector(const point_t& point1, const point_t& point2);
+    inline vector_t cross_product(const vector_t& vector) const;
+    inline double   dot_product(const vector_t& vector) const;
+    inline void     print() const {
         std::cout << "Vector: "<< "(" << a << ';' << b << ';' << c << ")\n";}
 };
 
