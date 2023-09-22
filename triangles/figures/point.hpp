@@ -9,8 +9,8 @@
 #include <cstdlib>
 #include <cmath>
 
-#include "./geometry_consts.hpp"
-#include "../debug_utils/error_control.h"
+//#include "./geometry_consts.hpp"
+#include "../../debug_utils/error_control.h"
 
 //-----------------------------------------------------------------------------------------
 
@@ -27,9 +27,7 @@ struct point_t {
     //Methods
     //Constructor & destructor
     explicit point_t() {};
-    explicit point_t(double x_, double y_, double z_) : x(x_), y(y_), z(z_) {
-        std::cout << "Hello from point constructor\n";
-    };
+    explicit point_t(double x_, double y_, double z_) : x(x_), y(y_), z(z_) {};
     virtual ~point_t() {};
 
     inline void set_point (double x_, double y_, double z_) {x = x_; y = y_; z = z_;};

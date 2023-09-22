@@ -2,15 +2,17 @@ cmake_minimum_required(VERSION 3.21)
 
 #-----------------------------------------------------------------------------------------
 
-project(trian)
+project(triangles_intersect)
 
 #-----------------------------------------------------------------------------------------
 
-set(TESTING_ENABLED OFF CACHE BOOL [FORCE])
+enable_testing()
+set(TESTING_ENABLED ON CACHE BOOL [FORCE])
 
 #-----------------------------------------------------------------------------------------
 
-set(CMAKE_BUILD_TYPE "Debug")
+set(CMAKE_BUILD_TYPE "Debjhbhug")
+
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_definitions(MY_DEBUG)
     message("Debug_version")
@@ -18,32 +20,21 @@ endif ()
 
 #-----------------------------------------------------------------------------------------
 
-#Root dir src
-set(SOURCE
-    interactio_with_user/unteraction_with_user.cpp
-    main.cpp)
-
-#Debug
-set(DEBUG_UTILS
-    ./debug_utils/error_control.cpp)
-
-#Headers
-set(FIGURES
-    figures/point.hpp
-    figures/vector.hpp
-    figures/line.hpp
-    figures/plane.hpp
-    figures/triangle.hpp
-    debug_utils/error_control.h
-    interactio_with_user/unteraction_with_user.hpp)
-
-#-----------------------------------------------------------------------------------------
-
-add_executable(${PROJECT_NAME} ${FIGURES} ${SOURCE} ${LIN_ALGEBRA} ${DEBUG_UTILS})
 
 if (TESTING_ENABLED)
     add_subdirectory(./tests/)
 endif()
+
+
+# add_test (NAME e2e_test
+#     COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/end_to_end_tests/e2e_test.py# Or just COMMAND pytest
+#     # WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+# )
+# set_tests_properties(python-tests
+#     PROPERTIES ENVIRONMENT "PYTHONPATH=${PROJECT_SOURCE_DIR}/src/mypyspace:$ENV{PYTHONPATH}")
+
+
+add_subdirectory(triangles/ )
 
 unset(TESTING_ENABLED CACHE)
 

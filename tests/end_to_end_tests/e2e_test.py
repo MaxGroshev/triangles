@@ -22,12 +22,15 @@ class TERMINAL_COLORS:
 
 
 test_data = {
-    (2, -2.75, 3.17, 3,
-        -2.22, 2.98, 3,
+    (3, -2.75, 3.17, 3,
+        -2.22, 2.98, 0,
         3.34, -3.98, 0,
+        0, 3, 0,
+        3, 0, 0,
+        0, 0, 0,
         0, 0, 0,
         0, 1, 1,
-        0, 1, 0)      : [1, 2],
+        0, 1, 0)      : [1, 2, 3],
 }
 
 # -----------------------------------------------------------------------------------------
@@ -60,12 +63,12 @@ def run_triangles(name_of_testing_prog, test_case):
     for data in test_case:
         input_str += str(data) + " "
 
-    stdout_data = (pipe.communicate(input = bytes(input_str, "UTF-8")))
-    string = str(stdout_data[0].decode())
-    conver_output = string.split()
-    conver_output = [int(num) for num in conver_output]
+    # stdout_data = (pipe.communicate(input = bytes(input_str, "UTF-8")))
+    # string_data = str(stdout_data[0].decode())
+    # conver_output = string_data.split()
+    # conver_output = [int(num) for num in conver_output]
 
-    return conver_output
+    return 0 #conver_output
 
 
 def run_test_data(test_data, name_of_testing_prog):
@@ -82,4 +85,4 @@ if __name__ == "__main__":
 #
 #     args = parser.parse_args()
 
-    run_test_data(test_data, "./build/trian")
+    run_test_data(test_data, "./build/triangles/trian")

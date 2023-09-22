@@ -6,7 +6,7 @@
 #include "./vector.hpp"
 #include "./line.hpp"
 #include "./linear_algebra.hpp"
-#include "../debug_utils/error_control.h"
+#include "../../debug_utils/error_control.h"
 
 //-----------------------------------------------------------------------------------------
 
@@ -82,7 +82,13 @@ int plane_t::def_pos_of_planes(const plane_t& plane) const {
     double coef_B = B / plane.B;
     double coef_C = C / plane.C;
 
-    if (coef_A == coef_B && coef_B == coef_C) {
+
+    std::cout << "Here\n";
+    std::cout << (A == 0 && B == 0 && C == 0) << coef_A;
+    if (coef_A == coef_B && coef_B == coef_C || (A == plane.A && B == plane.B
+        && A == 0 && B == 0)) {
+        std::cout << "Here\n";
+        return PLANES_COINCIDE;
         if (D / plane.D) {
             return PLANES_COINCIDE;
         }

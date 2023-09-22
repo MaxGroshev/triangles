@@ -6,7 +6,6 @@
 #include <array>
 
 #include "./plane.hpp"
-#include "../debug_utils/error_control.h"
 
 //-----------------------------------------------------------------------------------------
 
@@ -17,6 +16,7 @@ const int coun_of_triangle_vertices = 3;
 class triangle_t {
     private:
         std::array<point_t, coun_of_triangle_vertices> vertices;
+        bool intersected = false;
 
         line_t  side_a;
         line_t  side_b;
@@ -26,13 +26,15 @@ class triangle_t {
         //Constructor & destructor
         explicit triangle_t() {};
         inline explicit triangle_t(const point_t& point1, const point_t& point2,
-                                                   const point_t& point3);
+                                                          const point_t& point3);
         virtual ~triangle_t() {};
 
         inline int  set(const point_t& point1, const point_t& point2, const point_t& point3);
         inline bool point_in_triangle(const point_t& point) const;
+        inline bool is_intersected() const {return intersected;};
+        inline void set_intersect_status(bool val) {intersected = val;};
         inline bool crosses_in_same_plane(const triangle_t& trian) const;
-        inline bool intersect  (const triangle_t& trian) const;
+        inline bool intersect(const triangle_t& trian) const;
         inline void print();
 
 };
@@ -49,7 +51,6 @@ triangle_t::triangle_t(const point_t& point1, const point_t& point2,
     ASSERT (point1.is_valid() && point2.is_valid() && point3.is_valid());
 
     vertices = {point1, point2, point3};
-
     side_a.set_line(point1, point2);
     side_b.set_line(point2, point3);
     side_c.set_line(point1, point3);
@@ -61,7 +62,6 @@ int triangle_t::set(const point_t& point1, const point_t& point2, const point_t&
     ASSERT (point1.is_valid() && point2.is_valid() && point3.is_valid());
 
     vertices = {point1, point2, point3};
-
     side_a.set_line(point1, point2);
     side_b.set_line(point2, point3);
     side_c.set_line(point1, point3);
@@ -75,12 +75,12 @@ int triangle_t::set(const point_t& point1, const point_t& point2, const point_t&
 
 bool triangle_t::intersect(const triangle_t& trian) const {
     std::array<point_t, coun_of_triangle_vertices> intersect_points;
-    int pos_type = plane.def_pos_of_planes(trian.plane);
+    int plane_pos = plane.def_pos_of_planes(trian.plane);
 
-    if (pos_type == PLANES_PARALLEL) {
+    if (plane_pos == PLANES_PARALLEL) {
         return false;
     }
-    else if (pos_type == PLANES_COINCIDE) {
+    else if (plane_pos == PLANES_COINCIDE) {
         return crosses_in_same_plane(trian);
     }
 
@@ -101,12 +101,17 @@ bool triangle_t::intersect(const triangle_t& trian) const {
 
 bool triangle_t::crosses_in_same_plane(const triangle_t& trian) const { //TODO more general
     for (int i = 0; i < coun_of_triangle_vertices; i++) {
-        if (trian.vertices[i].is_valid()) {
-            bool in_triangle = point_in_triangle(trian.vertices[i]);
-           // std::cout << in_triangle;
-            if (in_triangle) {
-                return true;
-            }
+        bool in_triangle = point_in_triangle(trian.vertices[i]);
+        std::cout << "Point in triangle\n";
+        if (in_triangle) {
+            return true;
+        }
+    }
+    for (int i = 0; i < coun_of_triangle_vertices; i++) {
+        bool in_triangle =trian.point_in_triangle(this->vertices[i]);
+        std::cout << "Point in triangle la la \n";
+        if (in_triangle) {
+            return true;
         }
     }
     return false;
@@ -125,7 +130,7 @@ bool triangle_t::point_in_triangle(const point_t& point) const {
     double s = (dot_aa * dot_cp - dot_ac * dot_ap) * divider;
     double t = (dot_cc * dot_ap - dot_ac * dot_cp) * divider;
 
-    std::cout << "S: " << s << " T: " << t << '\n';
+    LOG_DEBUG ("S: ", s, " T: ", t, '\n');
 
     return ((s >= 0) && (t >= 0) && (s + t <= 1));
 }
@@ -138,6 +143,9 @@ void triangle_t::print() {
     for (int i = 0; i < vertices.size (); i++) {
         vertices[i].print();
     }
+    side_a.dir_vector.print();
+    side_b.dir_vector.print();
+    side_c.dir_vector.print();
     std::cout << "Print of triangle plane:\n";
     plane.print();
     std::cout << "---------------------------\n";
