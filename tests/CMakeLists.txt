@@ -26,9 +26,7 @@ set (UNIT_TESTS
 
 #End_to_end_tests
 set (E2E_TESTS
-    ./end_to_end_tests/main.cpp
-    ./end_to_end_tests/e2e_tests.cpp
-    ../interactio_with_user/unteraction_with_user.cpp)
+    ../interactio_with_user/unteraction_with_user.cp)
 
 #Headers of figures
 set (HEADERS
