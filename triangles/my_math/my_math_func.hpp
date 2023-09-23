@@ -1,10 +1,11 @@
-#ifndef LIN_ALGEBRA_HPP
-#define LIN_ALGEBRA_HPP
-
-//#include "./vector.hpp"
+#pragma once
 
 //-----------------------------------------------------------------------------------------
 
 //double find_det(const vector_t& vec1, const vector_t& vec2, const vector_t& vec3);
 
-#endif
+template<typename T>
+T my_abs(T val) {
+    if (val < 0) return (-val);
+    return val;
+};

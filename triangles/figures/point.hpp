@@ -9,12 +9,13 @@
 #include <cstdlib>
 #include <cmath>
 
-//#include "./geometry_consts.hpp"
+#include "../my_math/my_math_func.hpp"
 #include "../../debug_utils/error_control.h"
 
 //-----------------------------------------------------------------------------------------
 
 const int count_of_dementions = 3;
+const double calculation_error = 0.02;
 
 //-----------------------------------------------------------------------------------------
 

@@ -21,7 +21,6 @@ size_t get_count_of_triangles(std::istream & in_strm) {
         exit(-1);
     }
 
-    LOG_DEBUG (count_of_triangles, '\n');
     return count_of_triangles;
 }
 
@@ -41,7 +40,7 @@ triangle_vect get_user_triangles(const size_t count_of_triangles, std::istream &
             exit(-1);
         }
         tmp_trian.set (p1, p2, p3);
-        tmp_trian.print();
+        //tmp_trian.print();
         user_triangles.push_back(tmp_trian);
     }
 
@@ -53,6 +52,7 @@ std::vector<size_t> start_tests(size_t count_of_triangles, triangle_vect user_tr
     for (int i = 0; i < count_of_triangles; i++) {
         for (int j = i + 1; j < count_of_triangles; j++) {
             if (user_triangles[i].intersect(user_triangles[j])) {
+                //std::cout << i << '\n';
                 if (!user_triangles[i].is_intersected()) {
                     intersect_triangles.push_back(i + 1);
                 }

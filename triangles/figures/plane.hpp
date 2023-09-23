@@ -5,7 +5,6 @@
 
 #include "./vector.hpp"
 #include "./line.hpp"
-#include "./linear_algebra.hpp"
 #include "../../debug_utils/error_control.h"
 
 //-----------------------------------------------------------------------------------------
@@ -18,9 +17,7 @@ enum pos_of_the_planes {
 
 struct plane_t {
     //Fields
-    double A = NAN;
-    double B = NAN;
-    double C = NAN;
+    vector_t norm_vector;
     double D = NAN;
 
     //Methods
@@ -44,6 +41,7 @@ struct plane_t {
 //-----------------------------------------------------------------------------------------
 //
 // Ax + By + Cz + D = 0 - equation of plane
+// (a, b, c) - normal vector of plane
 //
 //-----------------------------------------------------------------------------------------
 
@@ -54,10 +52,12 @@ plane_t::plane_t(const point_t& point1, const point_t& point2,
     vector_t vec_v(point1, point2);
     vector_t vec_w(point1, point3);
 
-    A =  (vec_v.b * vec_w.c) - (vec_w.b * vec_v.c);
-    B = -((vec_v.a * vec_w.c) - (vec_w.a * vec_v.c));
-    C =  (vec_v.a * vec_w.b) - (vec_w.a * vec_v.b);
-    D = A * (-point1.x) + B * (-point1.y) + C * (-point1.z);
+    norm_vector.a =  (vec_v.b * vec_w.c) - (vec_w.b * vec_v.c);
+    norm_vector.b = -((vec_v.a * vec_w.c) - (vec_w.a * vec_v.c));
+    norm_vector.c =  (vec_v.a * vec_w.b) - (vec_w.a * vec_v.b);
+    D = norm_vector.a * (-point1.x) +
+        norm_vector.b * (-point1.y) +
+        norm_vector.c * (-point1.z);
 }
 
 int plane_t::set_plane(const point_t& point1, const point_t& point2,
@@ -67,10 +67,12 @@ int plane_t::set_plane(const point_t& point1, const point_t& point2,
     vector_t vec_v(point1, point2);
     vector_t vec_w(point1, point3);
 
-    A =   (vec_v.b * vec_w.c) - (vec_w.b * vec_v.c);
-    B = -((vec_v.a * vec_w.c) - (vec_w.a * vec_v.c));
-    C =   (vec_v.a * vec_w.b) - (vec_w.a * vec_v.b);
-    D = A * (-point1.x) + B * (-point1.y) + C * (-point1.z);
+    norm_vector.a =  (vec_v.b * vec_w.c) - (vec_w.b * vec_v.c);
+    norm_vector.b = -((vec_v.a * vec_w.c) - (vec_w.a * vec_v.c));
+    norm_vector.c =  (vec_v.a * vec_w.b) - (vec_w.a * vec_v.b);
+    D = norm_vector.a * (-point1.x) +
+        norm_vector.b * (-point1.y) +
+        norm_vector.c * (-point1.z);
 
     return 0;
 }
@@ -78,18 +80,9 @@ int plane_t::set_plane(const point_t& point1, const point_t& point2,
 //-----------------------------------------------------------------------------------------
 
 int plane_t::def_pos_of_planes(const plane_t& plane) const {
-    double coef_A = A / plane.A;
-    double coef_B = B / plane.B;
-    double coef_C = C / plane.C;
-
-
-    std::cout << "Here\n";
-    std::cout << (A == 0 && B == 0 && C == 0) << coef_A;
-    if (coef_A == coef_B && coef_B == coef_C || (A == plane.A && B == plane.B
-        && A == 0 && B == 0)) {
-        std::cout << "Here\n";
-        return PLANES_COINCIDE;
-        if (D / plane.D) {
+    double angle_between = norm_vector.find_angle(plane.norm_vector);
+    if (my_abs(angle_between - 1) < calculation_error) {
+        if (D == plane.D) {
             return PLANES_COINCIDE;
         }
         return PLANES_PARALLEL;
@@ -105,13 +98,15 @@ int plane_t::def_pos_of_planes(const plane_t& plane) const {
 //-----------------------------------------------------------------------------------------
 
 point_t plane_t::find_point_of_intersection(const line_t& line) const {
-    double param = -((A * line.point_on_line.x) +
-                     (D * line.point_on_line.y) +
-                     (C * line.point_on_line.y) + D);
-
-    param /= ((A * line.dir_vector.a) +
-              (B * line.dir_vector.b) +
-              (C * line.dir_vector.c));
+    double param = -((norm_vector.a * line.point_on_line.x) +
+                     (norm_vector.b * line.point_on_line.y) +
+                     (norm_vector.c * line.point_on_line.z) + D);
+    double dot   = norm_vector.dot_product(line.dir_vector);
+    if (dot == 0) {
+        point_t point {};
+        return point;
+    }
+    param /=  dot;
 
     point_t point (line.dir_vector.a * param + line.point_on_line.x,
                    line.dir_vector.b * param + line.point_on_line.y,
@@ -123,7 +118,9 @@ point_t plane_t::find_point_of_intersection(const line_t& line) const {
 //-----------------------------------------------------------------------------------------
 
 void plane_t::print() const {
-    std::cout << '(' << A << ';' << B << ';' << C << ") - normal vector of plane\n";
+    std::cout << '(' << norm_vector.a << ';'
+                     << norm_vector.b << ';'
+                     << norm_vector.c << ") - normal vector of plane\n";
     std::cout << "D = " << D  << '\n';
 }
 

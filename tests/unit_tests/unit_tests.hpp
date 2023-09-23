@@ -11,5 +11,6 @@
 
 #include "./point_tests.hpp"
 #include "./triangle_tests.hpp"
+#include "./plane_tests.hpp"
 
 //-----------------------------------------------------------------------------------------

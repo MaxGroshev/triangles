@@ -83,15 +83,26 @@ bool triangle_t::intersect(const triangle_t& trian) const {
     else if (plane_pos == PLANES_COINCIDE) {
         return crosses_in_same_plane(trian);
     }
+    else {
+        intersect_points[0] = plane.find_point_of_intersection(trian.side_a);
+        intersect_points[1] = plane.find_point_of_intersection(trian.side_b);
+        intersect_points[2] = plane.find_point_of_intersection(trian.side_c);
+        for (int i = 0; i < coun_of_triangle_vertices; i++) {
+            if (intersect_points[i].is_valid()) {
+                if (point_in_triangle(intersect_points[i])) {
+                    return true;
+                }
+            }
+        }
 
-    intersect_points[0] = plane.find_point_of_intersection(trian.side_a);
-    intersect_points[1] = plane.find_point_of_intersection(trian.side_b);
-    intersect_points[2] = plane.find_point_of_intersection(trian.side_c);
-
-    for (int i = 0; i < coun_of_triangle_vertices; i++) {
-        if (intersect_points[i].is_valid()) {
-            if (point_in_triangle(intersect_points[i])) {
-                return true;
+        intersect_points[0] = trian.plane.find_point_of_intersection(side_a);
+        intersect_points[1] = trian.plane.find_point_of_intersection(side_b);
+        intersect_points[2] = trian.plane.find_point_of_intersection(side_c);
+        for (int i = 0; i < coun_of_triangle_vertices; i++) {
+            if (intersect_points[i].is_valid()) {
+                if (trian.point_in_triangle(intersect_points[i])) {
+                    return true;
+                }
             }
         }
     }
@@ -102,15 +113,15 @@ bool triangle_t::intersect(const triangle_t& trian) const {
 bool triangle_t::crosses_in_same_plane(const triangle_t& trian) const { //TODO more general
     for (int i = 0; i < coun_of_triangle_vertices; i++) {
         bool in_triangle = point_in_triangle(trian.vertices[i]);
-        std::cout << "Point in triangle\n";
         if (in_triangle) {
+            LOG_DEBUG("Point in triangle\n");
             return true;
         }
     }
     for (int i = 0; i < coun_of_triangle_vertices; i++) {
         bool in_triangle =trian.point_in_triangle(this->vertices[i]);
-        std::cout << "Point in triangle la la \n";
         if (in_triangle) {
+            LOG_DEBUG("Point in triangle second attempt\n");
             return true;
         }
     }

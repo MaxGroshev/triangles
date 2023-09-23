@@ -63,12 +63,12 @@ def run_triangles(name_of_testing_prog, test_case):
     for data in test_case:
         input_str += str(data) + " "
 
-    # stdout_data = (pipe.communicate(input = bytes(input_str, "UTF-8")))
-    # string_data = str(stdout_data[0].decode())
-    # conver_output = string_data.split()
-    # conver_output = [int(num) for num in conver_output]
+    stdout_data = (pipe.communicate(input = bytes(input_str, "UTF-8")))
+    string_data = str(stdout_data[0].decode())
+    conver_output = string_data.split()
+    conver_output = [int(num) for num in conver_output]
 
-    return 0 #conver_output
+    return conver_output
 
 
 def run_test_data(test_data, name_of_testing_prog):

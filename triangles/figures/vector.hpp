@@ -21,10 +21,12 @@ struct vector_t {
     virtual ~vector_t() {};
 
     inline int      set_vector(const point_t& point1, const point_t& point2);
+    inline double   find_angle(const vector_t& vector) const;
     inline vector_t cross_product(const vector_t& vector) const;
     inline double   dot_product(const vector_t& vector) const;
+    inline double   squared_len() const {return (a * a + b * b + c * c);};
     inline void     print() const {
-        std::cout << "Vector: "<< "(" << a << ';' << b << ';' << c << ")\n";}
+    std::cout << "Vector: "<< "(" << a << ';' << b << ';' << c << ")\n";}
 };
 
 //-----------------------------------------------------------------------------------------
@@ -62,6 +64,14 @@ vector_t vector_t::cross_product(const vector_t& vector) const {
 
 double vector_t::dot_product(const vector_t& vector) const {
     return (a * vector.a + b* vector.b + c * vector.c);
+}
+
+double vector_t::find_angle(const vector_t& vector) const {
+    double abs_dot = my_abs(dot_product(vector));
+    double squred_len_this  = squared_len();
+    double squared_len_vect = vector.squared_len();
+
+    return (abs_dot / (sqrt(squred_len_this) * sqrt(squared_len_vect)));
 }
 
 #endif
