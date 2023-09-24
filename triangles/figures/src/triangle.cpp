@@ -1,43 +1,4 @@
-#ifndef TRIANGLE_HPP
-#define TRIANGLE_HPP
-
-//-----------------------------------------------------------------------------------------
-
-#include <array>
-
-#include "./plane.hpp"
-
-//-----------------------------------------------------------------------------------------
-
-const int coun_of_triangle_vertices = 3;
-
-//-----------------------------------------------------------------------------------------
-
-class triangle_t {
-    private:
-        std::array<point_t, coun_of_triangle_vertices> vertices;
-        bool intersected = false;
-
-        line_t  side_a;
-        line_t  side_b;
-        line_t  side_c;
-        plane_t plane;
-    public:
-        //Constructor & destructor
-        explicit triangle_t() {};
-        inline explicit triangle_t(const point_t& point1, const point_t& point2,
-                                                          const point_t& point3);
-        virtual ~triangle_t() {};
-
-        inline int  set(const point_t& point1, const point_t& point2, const point_t& point3);
-        inline bool point_in_triangle(const point_t& point) const;
-        inline bool is_intersected() const {return intersected;};
-        inline void set_intersect_status(bool val) {intersected = val;};
-        inline bool crosses_in_same_plane(const triangle_t& trian) const;
-        inline bool intersect(const triangle_t& trian) const;
-        inline void print();
-
-};
+#include "../include/triangle.hpp"
 
 //-----------------------------------------------------------------------------------------
 //
@@ -91,7 +52,7 @@ bool triangle_t::intersect(const triangle_t& trian) const {
         for (int i = 0; i < coun_of_triangle_vertices; i++) {
             if (intersect_points[i].is_valid()) {
                 if (point_in_triangle(intersect_points[i]) &&
-                    trian.point_in_triangle(intersect_points[i])) { //not sure in this
+                    trian.point_in_triangle(intersect_points[i])) {
                     return true;
                 }
             }
@@ -104,7 +65,7 @@ bool triangle_t::intersect(const triangle_t& trian) const {
         for (int i = 0; i < coun_of_triangle_vertices; i++) {
             if (intersect_points[i].is_valid()) {
                 if (point_in_triangle(intersect_points[i]) &&
-                    trian.point_in_triangle(intersect_points[i])) { //not sure in this
+                    trian.point_in_triangle(intersect_points[i])) {
                     return true;
                 }
             }
@@ -116,19 +77,14 @@ bool triangle_t::intersect(const triangle_t& trian) const {
 
 bool triangle_t::crosses_in_same_plane(const triangle_t& trian) const { //TODO more general
     for (int i = 0; i < coun_of_triangle_vertices; i++) {
-        bool in_triangle = point_in_triangle(trian.vertices[i]);
-        if (in_triangle) {
+        bool trian_in_this = point_in_triangle(trian.vertices[i]);
+        bool this_in_trian = trian.point_in_triangle(this->vertices[i]);
+        if (trian_in_this || this_in_trian) {
             LOG_DEBUG("Point in triangle\n");
             return true;
         }
     }
-    for (int i = 0; i < coun_of_triangle_vertices; i++) {
-        bool in_triangle = trian.point_in_triangle(this->vertices[i]);
-        if (in_triangle) {
-            LOG_DEBUG("Point in triangle second attempt\n");
-            return true;
-        }
-    }
+
     return false;
 }
 
@@ -166,5 +122,3 @@ void triangle_t::print() {
     plane.print();
     std::cout << "---------------------------\n";
 }
-
-#endif
