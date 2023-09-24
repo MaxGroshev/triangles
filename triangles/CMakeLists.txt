@@ -12,24 +12,23 @@ set(SOURCE
     ./triangles_ui/ui.cpp
     ./my_math/my_math_func.cpp)
 
+#Figures
+set(FIGURES_SRC
+    ./figures/src/line.cpp
+    ./figures/src/plane.cpp
+    ./figures/src/triangle.cpp
+    ./figures/src/vector.cpp)
+
 #Debug
 set(DEBUG_UTILS
     ../debug_utils/error_control.cpp)
 
 #Headers
-set(FIGURES
-    figures/point.hpp
-    figures/vector.hpp
-    figures/line.hpp
-    figures/plane.hpp
-    figures/triangle.hpp
-    ./my_math/my_math_func.hpp
-    ../debug_utils/error_control.h
-    ./triangles_ui/ui.hpp)
+include_directories(./figures/include)
 
 #-----------------------------------------------------------------------------------------
 
-add_executable(${PROJECT_NAME} ${FIGURES} ${SOURCE} ${DEBUG_UTILS})
+add_executable(${PROJECT_NAME} ${FIGURES_SRC} ${SOURCE} ${DEBUG_UTILS})
 
 
 

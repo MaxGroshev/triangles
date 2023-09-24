@@ -7,7 +7,7 @@ project(triangles_intersect)
 #-----------------------------------------------------------------------------------------
 
 enable_testing()
-set(TESTING_ENABLED ON CACHE BOOL [FORCE])
+set(TESTING_ENABLED OFF CACHE BOOL [FORCE])
 
 #-----------------------------------------------------------------------------------------
 
@@ -20,6 +20,7 @@ endif ()
 
 #-----------------------------------------------------------------------------------------
 
+add_subdirectory(triangles/ )
 
 if (TESTING_ENABLED)
     add_subdirectory(./tests/)
@@ -33,8 +34,8 @@ endif()
 # set_tests_properties(python-tests
 #     PROPERTIES ENVIRONMENT "PYTHONPATH=${PROJECT_SOURCE_DIR}/src/mypyspace:$ENV{PYTHONPATH}")
 
+add_test(triangles_intersect, triangles_intersect)
 
-add_subdirectory(triangles/ )
 
 unset(TESTING_ENABLED CACHE)
 

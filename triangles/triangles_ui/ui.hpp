@@ -3,12 +3,12 @@
 //-----------------------------------------------------------------------------------------
 
 #include <vector>
-#include "../figures/triangle.hpp"
+#include "../figures/include/triangle.hpp"
 
 //-----------------------------------------------------------------------------------------
 
- namespace triangle_ui {
- };
+namespace triangle_ui {
+};
 
 using triangle_vect = typename std::vector<triangle_t>;
 
