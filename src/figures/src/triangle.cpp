@@ -1,5 +1,7 @@
 #include "../include/triangle.hpp"
 
+using namespace geom_figures;
+
 //-----------------------------------------------------------------------------------------
 //
 // vertices - array of vertices of triangle
@@ -9,6 +11,7 @@
 
 triangle_t::triangle_t(const point_t& point1, const point_t& point2,
                                               const point_t& point3) {
+
     ASSERT (point1.is_valid() && point2.is_valid() && point3.is_valid());
 
     vertices = {point1, point2, point3};
@@ -20,6 +23,7 @@ triangle_t::triangle_t(const point_t& point1, const point_t& point2,
 }
 
 int triangle_t::set(const point_t& point1, const point_t& point2, const point_t& point3) {
+
     ASSERT (point1.is_valid() && point2.is_valid() && point3.is_valid());
 
     vertices = {point1, point2, point3};
@@ -35,6 +39,7 @@ int triangle_t::set(const point_t& point1, const point_t& point2, const point_t&
 //-----------------------------------------------------------------------------------------
 
 bool triangle_t::intersect(const triangle_t& trian) const {
+
     std::array<point_t, coun_of_triangle_vertices> intersect_points;
     int plane_pos = plane.def_pos_of_planes(trian.plane);
 
@@ -76,6 +81,7 @@ bool triangle_t::intersect(const triangle_t& trian) const {
 }
 
 bool triangle_t::crosses_in_same_plane(const triangle_t& trian) const { //TODO more general
+
     for (int i = 0; i < coun_of_triangle_vertices; i++) {
         bool trian_in_this = point_in_triangle(trian.vertices[i]);
         bool this_in_trian = trian.point_in_triangle(this->vertices[i]);
@@ -89,6 +95,7 @@ bool triangle_t::crosses_in_same_plane(const triangle_t& trian) const { //TODO m
 }
 
 bool triangle_t::point_in_triangle(const point_t& point) const {
+
     vector_t p_vect(vertices[0], point);
 
     double dot_cc = side_c.dir_vector.dot_product(side_c.dir_vector);
@@ -104,12 +111,14 @@ bool triangle_t::point_in_triangle(const point_t& point) const {
     LOG_DEBUG ("S: ", s, " T: ", t, '\n');
 
     return ((s  >= -calculation_error) &&
-            (t  >= -calculation_error) && (s + t <= 1 + calculation_error));
+            (t  >= -calculation_error) &&
+            (s + t <= 1 + calculation_error));
 }
 
 //-----------------------------------------------------------------------------------------
 
 void triangle_t::print() {
+
     std::cout << "---------------------------\n";
     std::cout << "Print of triangle vertices:\n";
     for (int i = 0; i < vertices.size (); i++) {

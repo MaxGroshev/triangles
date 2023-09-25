@@ -7,6 +7,8 @@
 
 //-----------------------------------------------------------------------------------------
 
+namespace geom_figures {
+
 struct vector_t {
     //Fields
     double a = NAN;
@@ -28,4 +30,5 @@ struct vector_t {
     std::cout << "Vector: "<< "(" << a << ';' << b << ';' << c << ")\n";}
 };
 
+}
 #endif

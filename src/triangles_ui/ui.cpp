@@ -1,17 +1,19 @@
 #include "./ui.hpp"
 
-using namespace triangle_ui;
-
 //-----------------------------------------------------------------------------------------
 
-std::vector<size_t> test_user_data(std::istream & in_strm) {
-    size_t count_of_triangles    = get_count_of_triangles(in_strm);
+namespace triangle_ui {
+
+std::vector<size_t> get_and_test_user_data(std::istream & in_strm) {
+
+    size_t count_of_triangles    = get_count_of_input_triangles(in_strm);
     triangle_vect user_triangles = get_user_triangles(count_of_triangles);
 
     return start_tests(count_of_triangles, user_triangles);
 }
 
-size_t get_count_of_triangles(std::istream & in_strm) {
+size_t get_count_of_input_triangles(std::istream & in_strm) {
+
     ASSERT (!in_strm.eof ());
 
     int count_of_triangles = 0;
@@ -25,8 +27,8 @@ size_t get_count_of_triangles(std::istream & in_strm) {
 }
 
 triangle_vect get_user_triangles(const size_t count_of_triangles, std::istream & in_strm) {
-    triangle_vect user_triangles;
 
+    triangle_vect user_triangles;
     point_t p1;
     point_t p2;
     point_t p3;
@@ -48,6 +50,7 @@ triangle_vect get_user_triangles(const size_t count_of_triangles, std::istream &
 }
 
 std::vector<size_t> start_tests(size_t count_of_triangles, triangle_vect user_triangles) {
+
     std::vector<size_t> intersect_triangles;
     for (int i = 0; i < count_of_triangles; i++) {
         for (int j = i + 1; j < count_of_triangles; j++) {
@@ -66,8 +69,12 @@ std::vector<size_t> start_tests(size_t count_of_triangles, triangle_vect user_tr
     return intersect_triangles;
 }
 
-void print_triangles(triangle_t* triangle, size_t count_of_triangle) {
+//-----------------------------------------------------------------------------------------
+
+void print_triangles(triangle_vect triangles, size_t count_of_triangle) {
     for (int i = 0; i < count_of_triangle; i++) {
-        triangle[i].print();
+        triangles[i].print();
     }
+}
+
 }

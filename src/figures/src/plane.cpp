@@ -1,5 +1,7 @@
 #include "../include/plane.hpp"
 
+using namespace geom_figures;
+
 //-----------------------------------------------------------------------------------------
 //
 // Ax + By + Cz + D = 0 - equation of plane
@@ -9,6 +11,7 @@
 
 plane_t::plane_t(const point_t& point1, const point_t& point2,
                                         const point_t& point3) {
+
     ASSERT (point1.is_valid() && point2.is_valid() && point3.is_valid());
 
     vector_t vec_v(point1, point2);
@@ -25,6 +28,7 @@ plane_t::plane_t(const point_t& point1, const point_t& point2,
 
 int plane_t::set_plane(const point_t& point1, const point_t& point2,
                                               const point_t& point3) {
+
     ASSERT (point1.is_valid() && point2.is_valid() && point3.is_valid());
 
     vector_t vec_v(point1, point2);
@@ -42,8 +46,16 @@ int plane_t::set_plane(const point_t& point1, const point_t& point2,
 }
 
 //-----------------------------------------------------------------------------------------
+//
+// Three tyoes of mutual arragement of planes
+// 1) Parallel
+// 2) Concide
+// 3) Crosses
+//
+//-----------------------------------------------------------------------------------------
 
 int plane_t::def_pos_of_planes(const plane_t& plane) const {
+
     double angle_between = norm_vector.find_angle(plane.norm_vector);
     LOG_DEBUG ("Angle between vectors: ", angle_between,'\n');
 
@@ -57,9 +69,10 @@ int plane_t::def_pos_of_planes(const plane_t& plane) const {
 }
 
 bool plane_t::is_point_in_plane(const point_t& point) const {
-    if ((norm_vector.a * point.x +
-         norm_vector.b * point.y +
-         norm_vector.c * point.z + D) == 0) {
+
+    if (fabs(norm_vector.a * point.x +
+             norm_vector.b * point.y +
+             norm_vector.c * point.z + D) < calculation_error) {
         return true;
     }
     return false;
@@ -73,6 +86,7 @@ bool plane_t::is_point_in_plane(const point_t& point) const {
 //-----------------------------------------------------------------------------------------
 
 point_t plane_t::find_point_of_intersection(const line_t& line) const {
+
     double param = -((norm_vector.a * line.point_on_line.x) +
                      (norm_vector.b * line.point_on_line.y) +
                      (norm_vector.c * line.point_on_line.z) + D);
@@ -96,6 +110,7 @@ point_t plane_t::find_point_of_intersection(const line_t& line) const {
 //-----------------------------------------------------------------------------------------
 
 void plane_t::print() const {
+
     std::cout << '(' << norm_vector.a << ';'
                      << norm_vector.b << ';'
                      << norm_vector.c << ") - normal vector of plane\n";
@@ -105,6 +120,7 @@ void plane_t::print() const {
 //-----------------------------------------------------------------------------------------
 
 double find_det(const vector_t& vec1, const vector_t& vec2, const vector_t& vec3) {
+
     double det1 = vec1.a * ((vec2.b * vec3.c) - (vec3.b * vec2.c));
     double det2 = vec2.a * ((vec1.b * vec3.c) - (vec3.b * vec1.c));
     double det3 = vec3.a * ((vec1.b * vec2.c) - (vec2.b * vec1.c));

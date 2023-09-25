@@ -1,5 +1,7 @@
 #pragma once
 
+using namespace geom_figures;
+
 //-----------------------------------------------------------------------------------------
 
 class triangle_test : public ::testing::Test {

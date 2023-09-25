@@ -7,6 +7,8 @@
 
 //-----------------------------------------------------------------------------------------
 
+namespace geom_figures {
+
 struct line_t {
     //Fields
     vector_t dir_vector;
@@ -21,4 +23,5 @@ struct line_t {
     int set_line(const point_t& point1, const point_t& point2);
 };
 
+}
 #endif

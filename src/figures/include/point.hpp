@@ -11,13 +11,11 @@
 
 #include "../../my_math/my_math_func.hpp"
 #include "../../../debug_utils/error_control.h"
+#include "./figures.hpp"
 
 //-----------------------------------------------------------------------------------------
 
-const int count_of_dementions = 3;
-const double calculation_error = 0.02;
-
-//-----------------------------------------------------------------------------------------
+namespace geom_figures {
 
 struct point_t {
     //Fields
@@ -37,4 +35,5 @@ struct point_t {
     {std::cout << "Point:  " << "(" << x << ';' << y << ';' << z << ")\n";};
 };
 
+}
 #endif

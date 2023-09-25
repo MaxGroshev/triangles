@@ -1,5 +1,7 @@
 #pragma once
 
+using namespace geom_figures;
+
 //-----------------------------------------------------------------------------------------
 
 TEST(point_test, point_constructor) {

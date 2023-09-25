@@ -8,6 +8,8 @@
 
 //-----------------------------------------------------------------------------------------
 
+namespace geom_figures {
+
 enum pos_of_the_planes {
     PLANES_PARALLEL   = 0,
     PLANES_COINCIDE   = 1,
@@ -38,4 +40,6 @@ struct plane_t {
     void print() const ;
 };
 
+
+}
 #endif

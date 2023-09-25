@@ -7,6 +7,7 @@ project (tests)
 #-----------------------------------------------------------------------------------------
 
 find_package(GTest REQUIRED)
+# find_package(Python 2.7 REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 #-----------------------------------------------------------------------------------------

@@ -1,5 +1,7 @@
 #include "../include/line.hpp"
 
+using namespace geom_figures;
+
 //-----------------------------------------------------------------------------------------
 //
 // dir_vactor    - direction vector of line

@@ -1,5 +1,6 @@
 import subprocess
 import argparse
+import os
 from   subprocess import Popen, PIPE, STDOUT
 
 # -----------------------------------------------------------------------------------------
@@ -33,7 +34,8 @@ test_data = {
     (dir_of_test_dat + "008.dat") : [1, 2],
     (dir_of_test_dat + "009.dat") : [],
     (dir_of_test_dat + "010.dat") : [1, 2],
-    (dir_of_test_dat + "011.dat") : [1, 2],
+    (dir_of_test_dat + "011.dat") : [1, 2, 4],
+    (dir_of_test_dat + "012.dat") : [1, 2],
 }
 
 # -----------------------------------------------------------------------------------------
@@ -105,4 +107,6 @@ def run_test_data(test_data, name_of_testing_prog):
 # -----------------------------------------------------------------------------------------
 
 if __name__ == "__main__":
-    run_test_data(test_data, "./build/triangles/trian")
+    # dir = os.path.abspath(__file__)
+    print(dir)
+    run_test_data(test_data, "./build/src/triangles")
