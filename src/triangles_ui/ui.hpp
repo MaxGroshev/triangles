@@ -10,7 +10,6 @@
 namespace triangle_ui {
 
 using namespace geom_figures;
-
 using triangle_vect = typename std::vector<triangle_t>;
 
 size_t        get_count_of_input_triangles(std::istream & in_strm = std::cin);

@@ -47,7 +47,7 @@ int plane_t::set_plane(const point_t& point1, const point_t& point2,
 
 //-----------------------------------------------------------------------------------------
 //
-// Three tyoes of mutual arragement of planes
+// Three types of mutual arragement of planes
 // 1) Parallel
 // 2) Concide
 // 3) Crosses

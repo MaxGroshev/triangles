@@ -20,7 +20,7 @@
 # Tests
 Required programs:
 
-- Python 3
+- Python
 - Google tests
 
 
@@ -33,7 +33,7 @@ Required programs:
 
 #### How to run end to end tests?
 ```
-> python3 ./tests/end_to_end_tests/e2e_test.py
+> python ./tests/end_to_end_tests/e2e_test.py
 
 ```
 ---

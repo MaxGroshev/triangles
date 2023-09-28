@@ -11,9 +11,9 @@
 namespace geom_figures {
 
 enum pos_of_the_planes {
-    PLANES_PARALLEL   = 0,
-    PLANES_COINCIDE   = 1,
-    PLANES_CROSSES    = 2,
+    PLANES_PARALLEL = 0,
+    PLANES_COINCIDE = 1,
+    PLANES_CROSSES  = 2,
 };
 
 struct plane_t {
@@ -26,11 +26,11 @@ struct plane_t {
     //Constructor & destructor
     explicit plane_t() {};
     explicit plane_t(const point_t& point1, const point_t& point2,
-                                                   const point_t& point3);
+                                            const point_t& point3);
     virtual ~plane_t() {};
 
     int  set_plane(const point_t& point1, const point_t& point2,
-                                                 const point_t& point3);
+                                          const point_t& point3);
     int  def_pos_of_planes(const plane_t& plane) const;
     bool is_point_in_plane(const point_t& point) const;
     point_t find_point_of_intersection(const line_t& line) const;

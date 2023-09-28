@@ -55,13 +55,16 @@ std::vector<size_t> start_tests(size_t count_of_triangles, triangle_vect user_tr
     for (int i = 0; i < count_of_triangles; i++) {
         for (int j = i + 1; j < count_of_triangles; j++) {
             if (user_triangles[i].intersect(user_triangles[j])) {
+                LOG_DEBUG("INTERSECTION: (", i + 1, ";", j + 1, ")\n")
                 if (!user_triangles[i].is_intersected()) {
                     intersect_triangles.push_back(i + 1);
                     user_triangles[i].set_intersect_status(true);
                 }
-                intersect_triangles.push_back(j + 1);
-                user_triangles[j].set_intersect_status(true);
-                break;
+                if (!user_triangles[j].is_intersected()) {
+                    intersect_triangles.push_back(j + 1);
+                    user_triangles[j].set_intersect_status(true);
+                }
+               // break;
             }
         }
     }

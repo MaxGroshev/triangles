@@ -21,21 +21,36 @@ class TERMINAL_COLORS:
         BOLD      = '\033[1m'
         UNDERLINE = '\033[4m'
 
-dir_of_test_dat = "./tests/end_to_end_tests/test_dat/"
+dir_of_my_test_dat   = "./tests/end_to_end_tests/my_test_dat/"
+dir_of_alex_test_dat = "./tests/end_to_end_tests/alex_t_test_dat/"
 
 test_data = {
-    (dir_of_test_dat + "001.dat") : [1, 2],
-    (dir_of_test_dat + "002.dat") : [1, 2, 3],
-    (dir_of_test_dat + "003.dat") : [1, 2],
-    (dir_of_test_dat + "004.dat") : [1, 2],
-    (dir_of_test_dat + "005.dat") : [1, 2],
-    (dir_of_test_dat + "006.dat") : [],
-    (dir_of_test_dat + "007.dat") : [],
-    (dir_of_test_dat + "008.dat") : [1, 2],
-    (dir_of_test_dat + "009.dat") : [],
-    (dir_of_test_dat + "010.dat") : [1, 2],
-    (dir_of_test_dat + "011.dat") : [1, 2, 4],
-    (dir_of_test_dat + "012.dat") : [1, 2],
+    (dir_of_my_test_dat + "001.dat") : [1, 2],
+    (dir_of_my_test_dat + "002.dat") : [1, 2, 3],
+    (dir_of_my_test_dat + "003.dat") : [1, 2],
+    (dir_of_my_test_dat + "004.dat") : [1, 2],
+    (dir_of_my_test_dat + "005.dat") : [1, 2],
+    (dir_of_my_test_dat + "006.dat") : [],
+    (dir_of_my_test_dat + "007.dat") : [],
+    (dir_of_my_test_dat + "008.dat") : [1, 2],
+    (dir_of_my_test_dat + "009.dat") : [],
+    (dir_of_my_test_dat + "010.dat") : [1, 2],
+    (dir_of_my_test_dat + "011.dat") : [1, 2, 4],
+    (dir_of_my_test_dat + "012.dat") : [1, 2],
+    (dir_of_my_test_dat + "013.dat") : [1, 3, 5, 2, 4],
+    (dir_of_my_test_dat + "014.dat") : [1, 2],
+    (dir_of_my_test_dat + "025.dat") : [],
+
+
+    (dir_of_alex_test_dat + "015.dat") : [1, 3, 2],
+    (dir_of_alex_test_dat + "016.dat") : [],
+    (dir_of_alex_test_dat + "017.dat") : [1, 2, 3],
+    (dir_of_alex_test_dat + "018.dat") : [1, 3, 4, 2],
+    (dir_of_alex_test_dat + "019.dat") : [],
+    (dir_of_alex_test_dat + "020.dat") : [],
+    (dir_of_alex_test_dat + "021.dat") : [1, 2],
+    (dir_of_alex_test_dat + "023.dat") : [1, 2],
+    (dir_of_alex_test_dat + "024.dat") : [1, 2, 3],
 }
 
 # -----------------------------------------------------------------------------------------

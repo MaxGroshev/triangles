@@ -47,7 +47,7 @@ bool triangle_t::intersect(const triangle_t& trian) const {
         return false;
     }
     else if (plane_pos == PLANES_COINCIDE) {
-        return crosses_in_same_plane(trian);
+        return intersect_in_same_plane(trian);
     }
     else {
         intersect_points[0] = plane.find_point_of_intersection(trian.side_a);
@@ -80,7 +80,7 @@ bool triangle_t::intersect(const triangle_t& trian) const {
     return false;
 }
 
-bool triangle_t::crosses_in_same_plane(const triangle_t& trian) const { //TODO more general
+bool triangle_t::intersect_in_same_plane(const triangle_t& trian) const { //TODO more general
 
     for (int i = 0; i < coun_of_triangle_vertices; i++) {
         bool trian_in_this = point_in_triangle(trian.vertices[i]);

@@ -35,10 +35,9 @@ class triangle_t {
         bool point_in_triangle(const point_t& point) const;
         bool is_intersected() const {return intersected;};
         void set_intersect_status(bool val) {intersected = val;};
-        bool crosses_in_same_plane(const triangle_t& trian) const;
+        bool intersect_in_same_plane(const triangle_t& trian) const;
         bool intersect(const triangle_t& trian) const;
         void print();
-
 };
 
 }

@@ -29,7 +29,7 @@ struct point_t {
     explicit point_t(double x_, double y_, double z_) : x(x_), y(y_), z(z_) {};
     virtual ~point_t() {};
 
-    void set_point (double x_, double y_, double z_) {x = x_; y = y_; z = z_;};
+    void set_point(double x_, double y_, double z_) {x = x_; y = y_; z = z_;};
     bool is_valid() const {return !(x != x || y != y || z != z);};
     void print()    const
     {std::cout << "Point:  " << "(" << x << ';' << y << ';' << z << ")\n";};

@@ -35,13 +35,25 @@ TEST_F(plane_test, intersection_of_line_and_plane) {
     EXPECT_DOUBLE_EQ(inter_point.z, 0);
 }
 
+TEST_F(plane_test, define_pos_of_planes) {
+
+    point_t t_p1(0, 0, 2);
+    point_t t_p2(-1, 1, 1);
+    point_t t_p3(-1, -1, 1);
+    plane_t test_plane {t_p1, t_p2, t_p3};
+
+    ASSERT_TRUE(simple_plane.def_pos_of_planes(complicated_plane) ==  PLANES_CROSSES);
+    ASSERT_TRUE(simple_plane.def_pos_of_planes(simple_plane)      == PLANES_COINCIDE);
+    ASSERT_TRUE(simple_plane.def_pos_of_planes(test_plane)        == PLANES_PARALLEL);
+}
+
 TEST_F(plane_test, define_point_is_in_plane) {
 
     point_t point_in_plane(-1, 0, 0);
     point_t point_out_plane(1, 1, 1);
 
-    EXPECT_TRUE(simple_plane.is_point_in_plane(point_in_plane));
-    EXPECT_FALSE(simple_plane.is_point_in_plane(point_out_plane));
+    ASSERT_TRUE(simple_plane.is_point_in_plane(point_in_plane));
+    ASSERT_FALSE(simple_plane.is_point_in_plane(point_out_plane));
 }
 
 //-----------------------------------------------------------------------------------------
