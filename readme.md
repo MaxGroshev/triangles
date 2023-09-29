@@ -32,6 +32,7 @@ Required programs:
 ---
 
 #### How to run end to end tests?
+Run this command from top project directory
 ```
 > python ./tests/end_to_end_tests/e2e_test.py
 

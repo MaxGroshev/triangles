@@ -10,7 +10,7 @@ set(TESTING_ENABLED ON CACHE BOOL [FORCE])
 
 #-----------------------------------------------------------------------------------------
 
-set(CMAKE_BUILD_TYPE "Debutg")
+set(CMAKE_BUILD_TYPE "Release")
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_definitions(MY_DEBUG)
