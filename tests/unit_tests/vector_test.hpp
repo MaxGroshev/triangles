@@ -7,9 +7,9 @@ using namespace geom_figures;
 class vector_test : public ::testing::Test {
     protected:
         void SetUp() {
-            //if static SetUpTestSuit this will be created once
+
         }
-        point_t v1_begin {13, 2, 6}; //probably make static
+        point_t v1_begin {13, 2, 6};
         point_t v1_end   {-1, 1, 99};
 
         point_t v2_begin {-1, -1, 0};

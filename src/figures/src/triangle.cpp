@@ -40,7 +40,7 @@ int triangle_t::set(const point_t& point1, const point_t& point2, const point_t&
 
 bool triangle_t::intersect(const triangle_t& trian) const {
 
-    std::array<point_t, coun_of_triangle_vertices> intersect_points;
+    std::array<point_t, count_of_triangle_vertices> intersect_points;
     int plane_pos = plane.def_pos_of_planes(trian.plane);
 
     if (plane_pos == PLANES_PARALLEL) {
@@ -54,7 +54,7 @@ bool triangle_t::intersect(const triangle_t& trian) const {
         intersect_points[1] = plane.find_point_of_intersection(trian.side_b);
         intersect_points[2] = plane.find_point_of_intersection(trian.side_c);
 
-        for (int i = 0; i < coun_of_triangle_vertices; i++) {
+        for (int i = 0; i < count_of_triangle_vertices; i++) {
             if (intersect_points[i].is_valid()) {
                 if (point_in_triangle(intersect_points[i]) &&
                     trian.point_in_triangle(intersect_points[i])) {
@@ -67,7 +67,7 @@ bool triangle_t::intersect(const triangle_t& trian) const {
         intersect_points[1] = trian.plane.find_point_of_intersection(side_b);
         intersect_points[2] = trian.plane.find_point_of_intersection(side_c);
 
-        for (int i = 0; i < coun_of_triangle_vertices; i++) {
+        for (int i = 0; i < count_of_triangle_vertices; i++) {
             if (intersect_points[i].is_valid()) {
                 if (point_in_triangle(intersect_points[i]) &&
                     trian.point_in_triangle(intersect_points[i])) {
@@ -82,7 +82,7 @@ bool triangle_t::intersect(const triangle_t& trian) const {
 
 bool triangle_t::intersect_in_same_plane(const triangle_t& trian) const { //TODO more general
 
-    for (int i = 0; i < coun_of_triangle_vertices; i++) {
+    for (int i = 0; i < count_of_triangle_vertices; i++) {
         bool trian_in_this = point_in_triangle(trian.vertices[i]);
         bool this_in_trian = trian.point_in_triangle(this->vertices[i]);
         if (trian_in_this || this_in_trian) {

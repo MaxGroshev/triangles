@@ -11,13 +11,13 @@
 
 namespace geom_figures {
 
-const int coun_of_triangle_vertices = 3;
+const int count_of_triangle_vertices = 3;
 
 //-----------------------------------------------------------------------------------------
 
 class triangle_t {
     private:
-        std::array<point_t, coun_of_triangle_vertices> vertices;
+        std::array<point_t, count_of_triangle_vertices> vertices;
         bool intersected = false;
 
         line_t  side_a;

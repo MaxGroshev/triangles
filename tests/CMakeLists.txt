@@ -22,7 +22,7 @@ set (E2E_TESTS
 
 #Debug
 set (DEBUG_UTILS
-    ../debug_utils/error_control.cpp)
+    ../debug_utils/error_control/error_control.cpp)
 
 #-----------------------------------------------------------------------------------------
 

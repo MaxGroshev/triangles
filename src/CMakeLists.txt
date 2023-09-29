@@ -21,7 +21,7 @@ set(FIGURES_SRC
 
 #Debug
 set(DEBUG_UTILS
-    ../debug_utils/error_control.cpp)
+    ../debug_utils/error_control/error_control.cpp)
 
 include_directories(${PROJECT_NAME} PRIVATE ./figures/include)
 

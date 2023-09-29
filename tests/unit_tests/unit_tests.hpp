@@ -5,8 +5,7 @@
 #include <iostream>
 #include <gtest/gtest.h>
 
-#include "../../debug_utils/error_control.h"
-#include "../../debug_utils/console_colors.hpp"
+#include "../../debug_utils/debug_utils.hpp"
 #include "../../src/figures/include/triangle.hpp"
 
 #include "./point_tests.hpp"
