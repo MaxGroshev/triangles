@@ -43,5 +43,4 @@ Run this command from top project directory
 - go to  ./CMakeLists.txt
 - change CMAKE_BUILD_TYPE "Release" to "Debug"
 
-
 ---

@@ -58,7 +58,7 @@ TEST_F(triangle_test, point_on_triangle) {
     EXPECT_TRUE(triangle_1.point_in_triangle(t_p7));
 }
 
-//-----------------------------------------------------------------------------------------
+//----  -------------------------------------------------------------------------------------
 
 TEST_F(triangle_test, intersect_in_same_plane) {
 

@@ -54,18 +54,18 @@ int plane_t::set_plane(const point_t& point1, const point_t& point2,
 //
 //-----------------------------------------------------------------------------------------
 
-int plane_t::def_pos_of_planes(const plane_t& plane) const {
+pos_of_the_planes plane_t::def_pos_of_planes(const plane_t& plane) const {
 
     double angle_between = norm_vector.find_angle(plane.norm_vector);
     LOG_DEBUG ("Angle between vectors: ", angle_between,'\n');
 
     if (my_abs(angle_between - 1) < calculation_error) {
         if (is_point_in_plane(plane.point_in_plane)) {
-            return PLANES_COINCIDE;
+            return pos_of_the_planes::COINCIDE;
         }
-        return PLANES_PARALLEL;
+        return pos_of_the_planes::PARALLEL;
     }
-    return PLANES_CROSSES;
+    return pos_of_the_planes::CROSSES;
 }
 
 bool plane_t::is_point_in_plane(const point_t& point) const {

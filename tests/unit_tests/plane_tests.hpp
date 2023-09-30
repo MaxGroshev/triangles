@@ -42,9 +42,12 @@ TEST_F(plane_test, define_pos_of_planes) {
     point_t t_p3(-1, -1, 1);
     plane_t test_plane {t_p1, t_p2, t_p3};
 
-    ASSERT_TRUE(simple_plane.def_pos_of_planes(complicated_plane) ==  PLANES_CROSSES);
-    ASSERT_TRUE(simple_plane.def_pos_of_planes(simple_plane)      == PLANES_COINCIDE);
-    ASSERT_TRUE(simple_plane.def_pos_of_planes(test_plane)        == PLANES_PARALLEL);
+    ASSERT_TRUE(
+        simple_plane.def_pos_of_planes(complicated_plane) == pos_of_the_planes::CROSSES);
+    ASSERT_TRUE(
+        simple_plane.def_pos_of_planes(simple_plane)      == pos_of_the_planes::COINCIDE);
+    ASSERT_TRUE(
+        simple_plane.def_pos_of_planes(test_plane)        == pos_of_the_planes::PARALLEL);
 }
 
 TEST_F(plane_test, define_point_is_in_plane) {

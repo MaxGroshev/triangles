@@ -41,12 +41,12 @@ int triangle_t::set(const point_t& point1, const point_t& point2, const point_t&
 bool triangle_t::intersect(const triangle_t& trian) const {
 
     std::array<point_t, count_of_triangle_vertices> intersect_points;
-    int plane_pos = plane.def_pos_of_planes(trian.plane);
+    pos_of_the_planes pos = plane.def_pos_of_planes(trian.plane);
 
-    if (plane_pos == PLANES_PARALLEL) {
+    if (pos == pos_of_the_planes::PARALLEL) {
         return false;
     }
-    else if (plane_pos == PLANES_COINCIDE) {
+    else if (pos == pos_of_the_planes::COINCIDE) {
         return intersect_in_same_plane(trian);
     }
     else {
