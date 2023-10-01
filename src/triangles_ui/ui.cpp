@@ -18,7 +18,7 @@ size_t get_count_of_input_triangles(std::istream & in_strm) {
 
     int count_of_triangles = 0;
     in_strm >> count_of_triangles;
-    if (!in_strm.good ()) {
+    if (!in_strm.good()) {
         std::cout << "\nWrong input of count of triangles\n";
         exit(-1);
     }
@@ -37,11 +37,11 @@ triangle_vect get_user_triangles(const size_t count_of_triangles, std::istream &
         in_strm >> p1.x >> p1.y >> p1.z;
         in_strm >> p2.x >> p2.y >> p2.z;
         in_strm >> p3.x >> p3.y >> p3.z;
-        if (!in_strm.good ()) {
+        if (!in_strm.good() && !in_strm.eof()) {
             std::cout << "\nWrong input of coordinates of triangles\n";
             exit(-1);
         }
-        tmp_trian.set (p1, p2, p3);
+        tmp_trian.set(p1, p2, p3);
        // tmp_trian.print();
         user_triangles.push_back(tmp_trian);
     }
