@@ -6,11 +6,11 @@
 #include <fstream>
 #include <string>
 
-#include "./logs_define.h"
+#include "logs_define.h"
 
 //-----------------------------------------------------------------------------------------
 
 template <class... Args>
 int   write_logs (Args... log_text);
 
-#include "./logs.tpp"
+#include "logs.tpp"

@@ -3,7 +3,7 @@
 
 //-----------------------------------------------------------------------------------------
 
-#include "./point.hpp"
+#include "point.hpp"
 
 //-----------------------------------------------------------------------------------------
 
@@ -19,7 +19,6 @@ struct vector_t {
     //Constructor & destructor
     explicit vector_t() {};
     explicit vector_t(const point_t& point1, const point_t& point2);
-    virtual ~vector_t() {};
 
     int      set_vector(const point_t& point1, const point_t& point2);
     double   find_angle(const vector_t& vector) const;

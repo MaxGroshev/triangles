@@ -1,4 +1,4 @@
-#include "../include/line.hpp"
+#include "line.hpp"
 
 using namespace geom_figures;
 

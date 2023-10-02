@@ -23,7 +23,8 @@ set(FIGURES_SRC
 set(DEBUG_UTILS
     ../debug_utils/error_control/error_control.cpp)
 
-include_directories(${PROJECT_NAME} PRIVATE ./figures/include)
+include_directories(${PROJECT_NAME} PRIVATE
+                    ./my_math)
 
 #-----------------------------------------------------------------------------------------
 

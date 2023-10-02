@@ -1,5 +1,5 @@
-#include "./triangles_ui/ui.hpp"
-#include "./figures/include/triangle.hpp"
+#include "ui.hpp"
+#include "triangle.hpp"
 
 //-----------------------------------------------------------------------------------------
 

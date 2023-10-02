@@ -29,7 +29,6 @@ class triangle_t {
         explicit triangle_t() {};
         explicit triangle_t(const point_t& point1, const point_t& point2,
                                                           const point_t& point3);
-        virtual ~triangle_t() {};
 
         int  set(const point_t& point1, const point_t& point2, const point_t& point3);
         bool point_in_triangle(const point_t& point) const;

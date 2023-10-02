@@ -3,8 +3,8 @@
 
 //-----------------------------------------------------------------------------------------
 
-#include "./vector.hpp"
-#include "./line.hpp"
+#include "vector.hpp"
+#include "line.hpp"
 
 //-----------------------------------------------------------------------------------------
 
@@ -27,7 +27,6 @@ struct plane_t {
     explicit plane_t() {};
     explicit plane_t(const point_t& point1, const point_t& point2,
                                             const point_t& point3);
-    virtual ~plane_t() {};
     int set_plane(const point_t& point1, const point_t& point2, const point_t& point3);
 
     pos_of_the_planes def_pos_of_planes(const plane_t& plane) const;

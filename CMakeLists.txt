@@ -19,6 +19,11 @@ endif ()
 
 #-----------------------------------------------------------------------------------------
 
+include_directories(${PROJECT_NAME} PRIVATE
+                    ./src/figures/include
+                    ./debug_utils
+                    ./src/triangles_ui/)
+
 add_subdirectory(src/)
 
 if (TESTING_ENABLED)

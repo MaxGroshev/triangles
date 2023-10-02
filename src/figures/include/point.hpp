@@ -10,8 +10,8 @@
 #include <cmath>
 
 #include "../../my_math/my_math_func.hpp"
-#include "../../../debug_utils/debug_utils.hpp"
-#include "./figures.hpp"
+#include "debug_utils.hpp"
+#include "figures.hpp"
 
 //-----------------------------------------------------------------------------------------
 
@@ -27,7 +27,6 @@ struct point_t {
     //Constructor & destructor
     explicit point_t() {};
     explicit point_t(double x_, double y_, double z_) : x(x_), y(y_), z(z_) {};
-    virtual ~point_t() {};
 
     void set_point(double x_, double y_, double z_) {x = x_; y = y_; z = z_;};
     bool is_valid() const {return !(x != x || y != y || z != z);};

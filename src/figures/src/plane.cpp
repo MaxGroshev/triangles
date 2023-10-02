@@ -1,4 +1,4 @@
-#include "../include/plane.hpp"
+#include "plane.hpp"
 
 using namespace geom_figures;
 

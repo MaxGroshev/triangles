@@ -3,7 +3,7 @@
 
 //-----------------------------------------------------------------------------------------
 
-#include "./vector.hpp"
+#include "vector.hpp"
 
 //-----------------------------------------------------------------------------------------
 
@@ -18,7 +18,6 @@ struct line_t {
     //Constructor & destructor
     explicit line_t () {};
     explicit line_t (const point_t& point1, const point_t& point2);
-    virtual ~line_t () {};
 
     int set_line(const point_t& point1, const point_t& point2);
 };

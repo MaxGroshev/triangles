@@ -1,4 +1,4 @@
-#include "../include/triangle.hpp"
+#include "triangle.hpp"
 
 using namespace geom_figures;
 
