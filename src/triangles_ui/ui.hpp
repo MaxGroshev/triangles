@@ -4,6 +4,7 @@
 
 #include <vector>
 #include "triangle.hpp"
+#include <algorithm>
 
 //-----------------------------------------------------------------------------------------
 
@@ -20,4 +21,6 @@ std::vector<size_t> get_and_test_user_data(std::istream & in_strm = std::cin);
 std::vector<size_t> start_tests(size_t count_of_triangles, triangle_vect user_triangles);
 void print_triangles(triangle_vect triangles, size_t count_of_triangle);
 };
+
+
 

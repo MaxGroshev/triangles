@@ -20,7 +20,6 @@ endif ()
 #-----------------------------------------------------------------------------------------
 
 include_directories(${PROJECT_NAME} PRIVATE
-                    ./src/figures/include
                     ./debug_utils
                     ./src/triangles_ui/)
 
