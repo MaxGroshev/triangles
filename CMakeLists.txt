@@ -19,10 +19,6 @@ endif ()
 
 #-----------------------------------------------------------------------------------------
 
-include_directories(${PROJECT_NAME} PRIVATE
-                    ./debug_utils
-                    ./src/triangles_ui/)
-
 add_subdirectory(src/)
 
 if (TESTING_ENABLED)

@@ -23,15 +23,25 @@ set(FIGURES_SRC
 set(DEBUG_UTILS
     ../debug_utils/error_control/error_control.cpp)
 
-include_directories(${PROJECT_NAME} PRIVATE
-                    ./figures/include)
-
 #-----------------------------------------------------------------------------------------
 
 add_library(figures ${FIGURES_SRC})
 
 add_executable(${PROJECT_NAME} ${SOURCE} ${DEBUG_UTILS})
+
 target_link_libraries(${PROJECT_NAME} figures)
+
+target_include_directories(${PROJECT_NAME} PRIVATE
+                            ./figures/include/
+                            ../debug_utils
+                            ./octree/
+                            ./triangles_ui/)
+
+target_include_directories(figures PRIVATE
+                            ./figures/include/
+                            ./octree/
+                            ../debug_utils
+                            ./triangles_ui/)
 
 
 

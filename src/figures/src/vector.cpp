@@ -48,5 +48,5 @@ double vector_t::find_angle(const vector_t& vector) const {
     double squred_len_this  = squared_len();
     double squared_len_vect = vector.squared_len();
 
-    return (abs_dot / (sqrt(squred_len_this) * sqrt(squared_len_vect)));
+    return (abs_dot / (sqrt(squred_len_this * squared_len_vect)));
 }

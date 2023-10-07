@@ -56,7 +56,7 @@ int plane_t::set_plane(const point_t& point1, const point_t& point2,
 
 pos_of_the_planes plane_t::def_pos_of_planes(const plane_t& plane) const {
 
-    double angle_between = norm_vector.find_angle(plane.norm_vector);
+    double angle_between = norm_vector.find_angle(plane.norm_vector); //bad: sqrt at the beginning
     LOG_DEBUG ("Angle between vectors: ", angle_between,'\n');
 
     if (my_abs(angle_between - 1) < calculation_error) {

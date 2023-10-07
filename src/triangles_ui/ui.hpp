@@ -5,6 +5,7 @@
 #include <vector>
 #include "triangle.hpp"
 #include <algorithm>
+#include "octree.hpp"
 
 //-----------------------------------------------------------------------------------------
 

@@ -29,7 +29,7 @@ set (DEBUG_UTILS
 include_directories(unit_tests PRIVATE ../src/figures/include/)
 
 add_executable            (unit_tests ${UNIT_TESTS} ${HEADERS} ${DEBUG_UTILS})
-target_include_directories(unit_tests PRIVATE${GTEST_INCLUDE_DIRS})
+target_include_directories(unit_tests PRIVATE${GTEST_INCLUDE_DIRS} ../debug_utils)
 target_link_libraries     (unit_tests ${GTEST_BOTH_LIBRARIES} figures)
 
 enable_testing()
