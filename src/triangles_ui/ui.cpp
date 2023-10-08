@@ -5,11 +5,17 @@
 namespace triangle_ui {
 
 std::vector<size_t> get_and_test_user_data(std::istream & in_strm) {
+    using namespace my_tree;
 
     size_t count_of_triangles    = get_count_of_input_triangles(in_strm);
     triangle_vect user_triangles = get_user_triangles(count_of_triangles);
 
-    return start_tests(count_of_triangles, user_triangles);
+    octree_t octree(user_triangles, point_t{1, 1, 1}, point_t{1, 1, 1});
+    octree.build_tree();
+
+    std::vector<size_t> parent_triangles;
+    return octree.find_intersections(parent_triangles);
+    //start_tests(count_of_triangles, user_triangles);
 }
 
 size_t get_count_of_input_triangles(std::istream & in_strm) {
@@ -49,28 +55,28 @@ triangle_vect get_user_triangles(const size_t count_of_triangles, std::istream &
     return user_triangles;
 }
 
-std::vector<size_t> start_tests(size_t count_of_triangles, triangle_vect user_triangles) {
-
-    std::vector<size_t> intersect_triangles;
-    for (int i = 0; i < count_of_triangles; i++) {
-        for (int j = i + 1; j < count_of_triangles; j++) {
-            if (user_triangles[i].intersect(user_triangles[j])) {
-                LOG_DEBUG("INTERSECTION: (", i, ";", j, ")\n")
-                if (!user_triangles[i].is_intersected()) {
-                    intersect_triangles.push_back(i);
-                    user_triangles[i].set_intersect_status(true);
-                }
-                if (!user_triangles[j].is_intersected()) {
-                    intersect_triangles.push_back(j);
-                    user_triangles[j].set_intersect_status(true);
-                }
-               // break;
-            }
-        }
-    }
-
-    return intersect_triangles;
-}
+// std::vector<size_t> start_tests(size_t count_of_triangles, triangle_vect user_triangles) { //pass func pointer
+//
+//     std::vector<size_t> intersect_triangles;
+//     for (int i = 0; i < count_of_triangles; i++) {
+//         for (int j = i + 1; j < count_of_triangles; j++) {
+//             if (user_triangles[i].intersect(user_triangles[j])) {
+//                 LOG_DEBUG("INTERSECTION: (", i, ";", j, ")\n")
+//                 if (!user_triangles[i].is_intersected()) {
+//                     intersect_triangles.push_back(i);
+//                     user_triangles[i].set_intersect_status(true);
+//                 }
+//                 if (!user_triangles[j].is_intersected()) {
+//                     intersect_triangles.push_back(j);
+//                     user_triangles[j].set_intersect_status(true);
+//                 }
+//                // break;
+//             }
+//         }
+//     }
+//
+//     return intersect_triangles;
+// }
 
 //-----------------------------------------------------------------------------------------
 
