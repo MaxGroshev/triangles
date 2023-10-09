@@ -10,14 +10,11 @@ std::vector<size_t> get_and_test_user_data(std::istream & in_strm) {
     size_t count_of_triangles  = get_count_of_input_triangles(in_strm);
     object_vect user_triangles = get_user_triangles(count_of_triangles);
     octree_t octree(user_triangles, point_t{128, 0, 128}, point_t{0, 128, 0});
-    octree.build_tree();
+    octree.root->build_tree();
 
     //octree.print();
     object_vect parent_triangles;
-    std::vector<size_t> tmp;
-    //while (true) std::cout << "Call it\n";
-    return octree.find_intersections(parent_triangles);
-    //start_tests(count_of_triangles, user_triangles);
+    return octree.root->find_intersections(parent_triangles);
 }
 
 size_t get_count_of_input_triangles(std::istream & in_strm) {
