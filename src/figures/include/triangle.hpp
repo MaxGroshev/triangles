@@ -32,11 +32,11 @@ class triangle_t {
 
         int  set(const point_t& point1, const point_t& point2, const point_t& point3);
         bool point_in_triangle(const point_t& point) const;
-        bool is_intersected() const {return intersected;};
+        bool intersect_status() const {return intersected;};
         void set_intersect_status(bool val) {intersected = val;};
         bool intersect_in_same_plane(const triangle_t& trian) const;
         bool intersect(const triangle_t& trian) const;
-        void print();
+        void print() const;
 };
 
 }

@@ -14,8 +14,7 @@ int main() {
     for (auto const& intersected : intersect_triangles) {
         std::cout << intersected << " \n";
     }
-
     auto end_time = chrono_cur_time ();
-    //std::cout << (end_time - start_time) / 0.001ms ;
+    std::cout << (end_time - start_time) / 0.1ms ;
     return 0;
 }
