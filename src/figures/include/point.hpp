@@ -1,5 +1,5 @@
-#ifndef POINT_HPP
-#define POINT_HPP
+#ifndef POINint_HPP
+#define POINint_HPP
 
 //-----------------------------------------------------------------------------------------
 
@@ -30,6 +30,20 @@ struct point_t {
 
     void set_point(double x_, double y_, double z_) {x = x_; y = y_; z = z_;};
     bool is_valid() const {return !(x != x || y != y || z != z);};
+    void print()    const
+    {std::cout << "Point:  " << "(" << x << ';' << y << ';' << z << ")\n";};
+};
+
+//repeating code: Use once in oct tree
+struct oct_point_t {
+    int x;
+    int y;
+    int z;
+
+    explicit oct_point_t() {};
+    explicit oct_point_t(int x_, int y_, int z_) : x(x_), y(y_), z(z_) {};
+
+    void set_point(int x_, int y_, int z_) {x = x_; y = y_; z = z_;};
     void print()    const
     {std::cout << "Point:  " << "(" << x << ';' << y << ';' << z << ")\n";};
 };

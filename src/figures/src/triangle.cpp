@@ -47,7 +47,6 @@ bool triangle_t::intersect(const triangle_t& trian) const {
     // trian.print();
 
     if (pos == pos_of_the_planes::PARALLEL) {
-        //std::cout << "Here\n";
         return false;
     }
     else if (pos == pos_of_the_planes::COINCIDE) {
