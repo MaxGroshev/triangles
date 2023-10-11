@@ -15,7 +15,7 @@ int main() {
         std::cout << intersected << " \n";
     }
     auto end_time = chrono_cur_time ();
-    std::cerr << "\n==============================\n";
-    std::cerr << "Run time: " <<(end_time - start_time) / 0.1ms  << '\n';
+    // std::cerr << "\n==============================\n";
+    // std::cerr << "Run time: " <<(end_time - start_time) / 0.1ms  << '\n';
     return 0;
 }
