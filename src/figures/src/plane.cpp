@@ -92,13 +92,9 @@ point_t plane_t::find_point_of_intersection(const line_t& line) const {
                      (norm_vector.c * line.point_on_line.z) + D);
 
     double dot   = norm_vector.dot_product(line.dir_vector);
-    if (dot == 0) {
-        point_t point {};
-        return point;
-    }
 
-    param /=  dot;
-
+    param /= dot; //removed div_by_zero_check : because result of it is NaN,
+                   //but prog check if point is valid
     point_t point (line.dir_vector.a * param + line.point_on_line.x,
                    line.dir_vector.b * param + line.point_on_line.y,
                    line.dir_vector.c * param + line.point_on_line.z);

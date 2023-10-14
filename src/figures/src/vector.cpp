@@ -38,10 +38,6 @@ vector_t vector_t::cross_product(const vector_t& vector) const {
     return res;
 }
 
-double vector_t::dot_product(const vector_t& vector) const {
-    return (a * vector.a + b* vector.b + c * vector.c);
-}
-
 double vector_t::find_angle(const vector_t& vector) const {
 
     double abs_dot = my_abs(dot_product(vector));

@@ -57,10 +57,10 @@ bool triangle_t::intersect(const triangle_t& trian) const {
         intersect_points[1] = plane.find_point_of_intersection(trian.side_b);
         intersect_points[2] = plane.find_point_of_intersection(trian.side_c);
 
-        for (int i = 0; i < count_of_triangle_vertices; i++) {
-            if (intersect_points[i].is_valid()) {
-                if (point_in_triangle(intersect_points[i]) &&
-                    trian.point_in_triangle(intersect_points[i])) {
+        for (auto& intersect_point : intersect_points) {
+            if (intersect_point.is_valid()) {
+                if (point_in_triangle(intersect_point) &&
+                    trian.point_in_triangle(intersect_point)) {
                     return true;
                 }
             }
@@ -70,10 +70,10 @@ bool triangle_t::intersect(const triangle_t& trian) const {
         intersect_points[1] = trian.plane.find_point_of_intersection(side_b);
         intersect_points[2] = trian.plane.find_point_of_intersection(side_c);
 
-        for (int i = 0; i < count_of_triangle_vertices; i++) {
-            if (intersect_points[i].is_valid()) {
-                if (point_in_triangle(intersect_points[i]) &&
-                    trian.point_in_triangle(intersect_points[i])) {
+        for (auto& intersect_point : intersect_points) {
+            if (intersect_point.is_valid()) {
+                if (point_in_triangle(intersect_point) &&
+                    trian.point_in_triangle(intersect_point)) {
                     return true;
                 }
             }
@@ -86,10 +86,8 @@ bool triangle_t::intersect(const triangle_t& trian) const {
 bool triangle_t::intersect_in_same_plane(const triangle_t& trian) const { //TODO more general
 
     for (int i = 0; i < count_of_triangle_vertices; i++) {
-        bool trian_in_this = point_in_triangle(trian.vertices[i]);
-        bool this_in_trian = trian.point_in_triangle(this->vertices[i]);
-        if (trian_in_this || this_in_trian) {
-            //LOG_DEBUG("Point in triangle\n");
+        if (point_in_triangle(trian.vertices[i]) || trian.point_in_triangle(this->vertices[i])) {
+            LOG_DEBUG("Point in triangle\n");
             return true;
         }
     }

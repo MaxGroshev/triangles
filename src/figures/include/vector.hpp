@@ -23,7 +23,10 @@ struct vector_t {
     int      set_vector(const point_t& point1, const point_t& point2);
     double   find_angle(const vector_t& vector) const;
     vector_t cross_product(const vector_t& vector) const;
-    double   dot_product(const vector_t& vector) const;
+    inline double dot_product(const vector_t& vector) const {
+        return (a * vector.a + b* vector.b + c * vector.c);
+    };
+
     double   squared_len() const {return (a * a + b * b + c * c);};
     void     print() const {
     std::cout << "Vector: "<< "(" << a << ';' << b << ';' << c << ")\n";}

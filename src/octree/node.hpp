@@ -59,9 +59,9 @@ node_t::node_t(octant_t* octant, object_vect triangles) :
     {/*parent = this;*/};
 
 node_t::~node_t() {
-    // for (int i = 0; i < count_of_octants; i++) {
-    //     delete children_[i];
-    // }
+    for (int i = 0; i < count_of_octants; i++) {
+        delete children_[i];
+    }
 }
 
 void node_t::insert(std::pair<triangle_t, size_t> triangle) {
@@ -108,7 +108,6 @@ void node_t::build_tree() {
         if (pos >= top_right_front) {
             del_vect.push_back(cur);
             oct_data[pos].push_back(*cur);
-            // counter--;
         }
     }
 
@@ -155,7 +154,6 @@ void node_t::find_intersection_in_oct(object_vect& parent_triangles,
                                       std::vector<size_t>& intersect_triangles) {
 
     for (auto child1 = triangles_.begin(); child1 != triangles_.end(); child1 =std::next(child1)) {
-        // auto child2 = std::next(child1);
         for (auto child2 = std::next(child1); child2 != triangles_.end(); child2 = std::next(child2)) {
             if (child1->first.intersect(child2->first)) {
                 if (!child1->first.intersect_status()) {

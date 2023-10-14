@@ -35,7 +35,7 @@ enum oct_name {
 };
 
 struct octant_t {
-    const double min_size = 1;
+    const double min_size = 5;
 
     using p_oct_array = typename  std::array<octant_t*, count_of_octants>;
 
