@@ -19,8 +19,6 @@ std::vector<size_t> get_and_test_user_data(std::istream & in_strm) {
     // for (int i = 0; i < user_triangles.size(); i++) {
     //     octree.insert(user_triangles[i]);
     // }
-    // std::vector<size_t> vct;
-    // return vct;
     //octree.print();
     return octree.find_intersections();
 }

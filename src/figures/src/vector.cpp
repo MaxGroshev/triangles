@@ -40,7 +40,7 @@ vector_t vector_t::cross_product(const vector_t& vector) const {
 
 double vector_t::find_angle(const vector_t& vector) const {
 
-    double abs_dot = my_abs(dot_product(vector));
+    double abs_dot = fabs(dot_product(vector));
     double squred_len_this  = squared_len();
     double squared_len_vect = vector.squared_len();
 

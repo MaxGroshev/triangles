@@ -59,7 +59,7 @@ pos_of_the_planes plane_t::def_pos_of_planes(const plane_t& plane) const {
     double angle_between = norm_vector.find_angle(plane.norm_vector); //bad: sqrt at the beginning
     LOG_DEBUG ("Angle between vectors: ", angle_between,'\n');
 
-    if (my_abs(angle_between - 1) < calculation_error) {
+    if (fabs(angle_between - 1) < calculation_error) {
         if (is_point_in_plane(plane.point_in_plane)) {
             return pos_of_the_planes::COINCIDE;
         }

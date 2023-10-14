@@ -53,6 +53,19 @@ bool triangle_t::intersect(const triangle_t& trian) const {
         return intersect_in_same_plane(trian);
     }
     else {
+        intersect_points[0] = trian.plane.find_point_of_intersection(side_a);
+        intersect_points[1] = trian.plane.find_point_of_intersection(side_b);
+        intersect_points[2] = trian.plane.find_point_of_intersection(side_c);
+
+        for (auto& intersect_point : intersect_points) {
+            if (intersect_point.is_valid()) {
+                if (point_in_triangle(intersect_point) &&
+                    trian.point_in_triangle(intersect_point)) {
+                    return true;
+                }
+            }
+        }
+
         intersect_points[0] = plane.find_point_of_intersection(trian.side_a);
         intersect_points[1] = plane.find_point_of_intersection(trian.side_b);
         intersect_points[2] = plane.find_point_of_intersection(trian.side_c);
@@ -66,18 +79,6 @@ bool triangle_t::intersect(const triangle_t& trian) const {
             }
         }
 
-        intersect_points[0] = trian.plane.find_point_of_intersection(side_a);
-        intersect_points[1] = trian.plane.find_point_of_intersection(side_b);
-        intersect_points[2] = trian.plane.find_point_of_intersection(side_c);
-
-        for (auto& intersect_point : intersect_points) {
-            if (intersect_point.is_valid()) {
-                if (point_in_triangle(intersect_point) &&
-                    trian.point_in_triangle(intersect_point)) {
-                    return true;
-                }
-            }
-        }
     }
 
     return false;

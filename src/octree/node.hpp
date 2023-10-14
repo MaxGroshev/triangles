@@ -81,9 +81,6 @@ void node_t::insert(std::pair<triangle_t, size_t> triangle) {
         }
         else {
             children_[pos]->insert(triangle);
-            // //std::cout << "Here\n";
-            // //children_[pos]->insert(triangle);
-            // children_[pos]->triangles_.push_back(triangle);
         }
     }
 
@@ -96,9 +93,7 @@ void node_t::build_tree() {
     if      (triangles_.size() <= 1)      return;
     else if (octant_.limit_of_oct_size()) return;
 
-   // return;
     point_t oct_center = octant_.find_octant_center();
-    //oct_center.print();
     octant_t::p_oct_array octants = octant_.create_oct_array(oct_center);//change
 
     std::array<object_vect, count_of_octants> oct_data;
