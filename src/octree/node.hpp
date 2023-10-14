@@ -8,7 +8,7 @@
 
 namespace my_tree {
 
-using object_vect = typename std::vector<std::pair<triangle_t, size_t>>;
+using object_vect = typename std::list<std::pair<triangle_t, size_t>>;
 
 struct node_t {
 
@@ -35,8 +35,8 @@ struct node_t {
                                          const point_t& oct_center) const;
 
     inline std::vector<size_t> find_intersections(object_vect parent_triangles);
-    inline void find_intersection_in_oct     (object_vect& parent_triangles,
-                                              std::vector<size_t>& intersect_triangles);
+    inline void find_intersection_in_oct (object_vect& parent_triangles,
+                                         std::vector<size_t>& intersect_triangles);
     inline void find_intersection_with_parent(object_vect& parent_triangles,
                                               std::vector<size_t>& intersect_triangles);
 };
@@ -59,9 +59,9 @@ node_t::node_t(octant_t* octant, object_vect triangles) :
     {/*parent = this;*/};
 
 node_t::~node_t() {
-    for (int i = 0; i < count_of_octants; i++) {
-        delete children_[i];
-    }
+    // for (int i = 0; i < count_of_octants; i++) {
+    //     delete children_[i];
+    // }
 }
 
 void node_t::insert(std::pair<triangle_t, size_t> triangle) {
@@ -69,26 +69,24 @@ void node_t::insert(std::pair<triangle_t, size_t> triangle) {
     point_t oct_center = octant_.find_octant_center();
     oct_name pos = define_pos_in_octant(triangle.first, oct_center);
 
-    if (pos >= top_right_front && pos <= bottom_right_back && !octant_.limit_of_oct_size()) {//remove r condition
-        if (children_[pos] != nullptr) {
-            if (children_[pos]->triangles_.size() != 0) {
-                children_[pos]->insert(triangle);
-            }
-            else {
-                children_[pos]->triangles_.push_back(triangle);
-            }
-        }
-        else {
-            octant_t octant = octant_t(octant, oct_center, pos);
-            children_[pos] = new node_t {octant.top_left_front_, octant.bottom_right_back_};
-            //std::cout << "Here\n";
-            //children_[pos]->insert(triangle);
-            children_[pos]->triangles_.push_back(triangle);
-        }
+    if (!(pos >= top_right_front && pos <= bottom_right_back) || octant_.limit_of_oct_size()) {//remove r condition
+        triangles_.push_back(triangle);
+        return;
     }
     else {
-        triangles_.push_back(triangle);
+        if (children_[pos] == nullptr) {
+            octant_t octant = octant_t(octant, oct_center, pos);
+            children_[pos] = new node_t {octant.top_left_front_, octant.bottom_right_back_};
+            children_[pos]->triangles_.push_back(triangle);
+        }
+        else {
+            children_[pos]->insert(triangle);
+            // //std::cout << "Here\n";
+            // //children_[pos]->insert(triangle);
+            // children_[pos]->triangles_.push_back(triangle);
+        }
     }
+
 }
 
 
@@ -105,17 +103,13 @@ void node_t::build_tree() {
 
     std::array<object_vect, count_of_octants> oct_data;
     std::vector<object_vect::iterator> del_vect;
-    int counter = 0;
-    for (auto const& elem : triangles_) {
-        oct_name pos = define_pos_in_octant(elem.first, oct_center);
+    for (auto cur = triangles_.begin(); cur != triangles_.end(); cur = std::next(cur)) {
+        oct_name pos = define_pos_in_octant(cur->first, oct_center);
         if (pos >= top_right_front) {
-            del_vect.push_back(triangles_.begin() + counter);
-
-            //triangles_.erase(triangles_.begin() + counter);
-            oct_data[pos].push_back(elem);
+            del_vect.push_back(cur);
+            oct_data[pos].push_back(*cur);
             counter--;
         }
-        counter++;
     }
 
     for (int i = 0; i < del_vect.size(); i++) {
@@ -159,37 +153,37 @@ std::vector<size_t> node_t::find_intersections(object_vect parent_triangles) {
 
 void node_t::find_intersection_in_oct(object_vect& parent_triangles,
                                       std::vector<size_t>& intersect_triangles) {
-    for (int i = 0; i < triangles_.size(); i++) {
-        for (int j = i + 1; j < triangles_.size(); j++) {
-            if (triangles_[i].first.intersect(triangles_[j].first)) {
-                LOG_DEBUG("INTERSECTION: (", i, ";", j, ")\n")
-                if (!triangles_[i].first.intersect_status()) {
-                    intersect_triangles.push_back(triangles_[i].second);
-                    triangles_[i].first.set_intersect_status(true);
+
+    for (auto child1 = triangles_.begin(); child1 != triangles_.end(); child1 =std::next(child1)) {
+        // auto child2 = std::next(child1);
+        for (auto child2 = std::next(child1); child2 != triangles_.end(); child2 = std::next(child2)) {
+            if (child1->first.intersect(child2->first)) {
+                if (!child1->first.intersect_status()) {
+                    intersect_triangles.push_back(child1->second);
+                    child1->first.set_intersect_status(true);
                 }
-                if (!triangles_[j].first.intersect_status()) {
-                    intersect_triangles.push_back(triangles_[j].second);
-                    triangles_[j].first.set_intersect_status(true);
+                if (!child2->first.intersect_status()) {
+                    intersect_triangles.push_back(child2->second);
+                    child2->first.set_intersect_status(true);
                 }
             }
         }
-        parent_triangles.push_back(triangles_[i]);
+        parent_triangles.push_back(*child1);
     }
 }
 
 void node_t::find_intersection_with_parent(object_vect& parent_triangles,
                                            std::vector<size_t>& intersect_triangles) {
-    for (int i = 0; i < triangles_.size(); i++) {
-        for (int j = 0; j < parent_triangles.size(); j++) {
-            if (triangles_[i].first.intersect(parent_triangles[j].first)) {
-                LOG_DEBUG("INTERSECTION: (", i, ";", j, ")\n")
-                if (!triangles_[i].first.intersect_status()) {
-                    intersect_triangles.push_back(triangles_[i].second);
-                    triangles_[i].first.set_intersect_status(true);
+    for (auto& child : triangles_) {
+        for (auto& parent : parent_triangles) {
+            if (child.first.intersect(parent.first)) {
+                if (!child.first.intersect_status()) {
+                    intersect_triangles.push_back(child.second);
+                    child.first.set_intersect_status(true);
                 }
-                if (!parent_triangles[j].first.intersect_status()) {
-                    intersect_triangles.push_back(parent_triangles[j].second);
-                    parent_triangles[j].first.set_intersect_status(true);
+                if (!parent.first.intersect_status()) {
+                    intersect_triangles.push_back(parent.second);
+                    parent.first.set_intersect_status(true);
                 }
             }
         }

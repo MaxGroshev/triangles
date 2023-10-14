@@ -15,7 +15,7 @@ std::vector<size_t> get_and_test_user_data(std::istream & in_strm) {
                                     init_oct.bottom_right_back_);
     octree.build_tree();
 
-    // octree_t octree(point_t{128, 0, 128}, point_t{0, 128, -50});
+    // octree_t octree(init_oct.top_left_front_, init_oct.bottom_right_back_);
     // for (int i = 0; i < user_triangles.size(); i++) {
     //     octree.insert(user_triangles[i]);
     // }

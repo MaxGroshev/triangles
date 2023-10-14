@@ -7,6 +7,7 @@
 #include <vector>
 #include <array>
 #include <iterator>
+#include <list>
 
 #include "debug_utils.hpp"
 #include "figures.hpp"
