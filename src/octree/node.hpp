@@ -108,7 +108,7 @@ void node_t::build_tree() {
         if (pos >= top_right_front) {
             del_vect.push_back(cur);
             oct_data[pos].push_back(*cur);
-            counter--;
+            // counter--;
         }
     }
 
